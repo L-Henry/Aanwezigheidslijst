@@ -32,7 +32,7 @@
             this.tabOpl = new System.Windows.Forms.TabPage();
             this.buttonOplDel = new System.Windows.Forms.Button();
             this.buttonOplUpd = new System.Windows.Forms.Button();
-            this.buttonOplAdd = new System.Windows.Forms.Button();
+            this.buttonOplCreate = new System.Windows.Forms.Button();
             this.labelEindDatum = new System.Windows.Forms.Label();
             this.labelStartdatum = new System.Windows.Forms.Label();
             this.labelOplCode = new System.Windows.Forms.Label();
@@ -55,9 +55,9 @@
             this.textBoxIdOpleiding = new System.Windows.Forms.TextBox();
             this.tabDeelnemers = new System.Windows.Forms.TabPage();
             this.listBoxDeelnemers = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonDeelnemerDel = new System.Windows.Forms.Button();
+            this.buttonDeelnemerUpd = new System.Windows.Forms.Button();
+            this.buttonDeelnemerCreate = new System.Windows.Forms.Button();
             this.labelDeelnemerBadgeNummer = new System.Windows.Forms.Label();
             this.labelDeelnemerWoonplaats = new System.Windows.Forms.Label();
             this.labelDeelnemerGeboortedatum = new System.Windows.Forms.Label();
@@ -133,7 +133,7 @@
             // 
             this.tabOpl.Controls.Add(this.buttonOplDel);
             this.tabOpl.Controls.Add(this.buttonOplUpd);
-            this.tabOpl.Controls.Add(this.buttonOplAdd);
+            this.tabOpl.Controls.Add(this.buttonOplCreate);
             this.tabOpl.Controls.Add(this.labelEindDatum);
             this.tabOpl.Controls.Add(this.labelStartdatum);
             this.tabOpl.Controls.Add(this.labelOplCode);
@@ -164,7 +164,7 @@
             // 
             // buttonOplDel
             // 
-            this.buttonOplDel.Location = new System.Drawing.Point(374, 454);
+            this.buttonOplDel.Location = new System.Drawing.Point(374, 507);
             this.buttonOplDel.Name = "buttonOplDel";
             this.buttonOplDel.Size = new System.Drawing.Size(122, 50);
             this.buttonOplDel.TabIndex = 22;
@@ -173,21 +173,21 @@
             // 
             // buttonOplUpd
             // 
-            this.buttonOplUpd.Location = new System.Drawing.Point(204, 454);
+            this.buttonOplUpd.Location = new System.Drawing.Point(204, 507);
             this.buttonOplUpd.Name = "buttonOplUpd";
             this.buttonOplUpd.Size = new System.Drawing.Size(122, 50);
             this.buttonOplUpd.TabIndex = 21;
             this.buttonOplUpd.Text = "Update";
             this.buttonOplUpd.UseVisualStyleBackColor = true;
             // 
-            // buttonOplAdd
+            // buttonOplCreate
             // 
-            this.buttonOplAdd.Location = new System.Drawing.Point(35, 454);
-            this.buttonOplAdd.Name = "buttonOplAdd";
-            this.buttonOplAdd.Size = new System.Drawing.Size(122, 50);
-            this.buttonOplAdd.TabIndex = 20;
-            this.buttonOplAdd.Text = "Voeg toe";
-            this.buttonOplAdd.UseVisualStyleBackColor = true;
+            this.buttonOplCreate.Location = new System.Drawing.Point(35, 507);
+            this.buttonOplCreate.Name = "buttonOplCreate";
+            this.buttonOplCreate.Size = new System.Drawing.Size(122, 50);
+            this.buttonOplCreate.TabIndex = 20;
+            this.buttonOplCreate.Text = "Creeër nieuwe opleiding";
+            this.buttonOplCreate.UseVisualStyleBackColor = true;
             // 
             // labelEindDatum
             // 
@@ -353,9 +353,9 @@
             // tabDeelnemers
             // 
             this.tabDeelnemers.Controls.Add(this.listBoxDeelnemers);
-            this.tabDeelnemers.Controls.Add(this.button1);
-            this.tabDeelnemers.Controls.Add(this.button2);
-            this.tabDeelnemers.Controls.Add(this.button3);
+            this.tabDeelnemers.Controls.Add(this.buttonDeelnemerDel);
+            this.tabDeelnemers.Controls.Add(this.buttonDeelnemerUpd);
+            this.tabDeelnemers.Controls.Add(this.buttonDeelnemerCreate);
             this.tabDeelnemers.Controls.Add(this.labelDeelnemerBadgeNummer);
             this.tabDeelnemers.Controls.Add(this.labelDeelnemerWoonplaats);
             this.tabDeelnemers.Controls.Add(this.labelDeelnemerGeboortedatum);
@@ -383,32 +383,32 @@
             this.listBoxDeelnemers.Size = new System.Drawing.Size(358, 624);
             this.listBoxDeelnemers.TabIndex = 60;
             // 
-            // button1
+            // buttonDeelnemerDel
             // 
-            this.button1.Location = new System.Drawing.Point(374, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 50);
-            this.button1.TabIndex = 59;
-            this.button1.Text = "Verwijder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerDel.Location = new System.Drawing.Point(374, 361);
+            this.buttonDeelnemerDel.Name = "buttonDeelnemerDel";
+            this.buttonDeelnemerDel.Size = new System.Drawing.Size(122, 50);
+            this.buttonDeelnemerDel.TabIndex = 59;
+            this.buttonDeelnemerDel.Text = "Verwijder";
+            this.buttonDeelnemerDel.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonDeelnemerUpd
             // 
-            this.button2.Location = new System.Drawing.Point(204, 308);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 50);
-            this.button2.TabIndex = 58;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerUpd.Location = new System.Drawing.Point(204, 361);
+            this.buttonDeelnemerUpd.Name = "buttonDeelnemerUpd";
+            this.buttonDeelnemerUpd.Size = new System.Drawing.Size(122, 50);
+            this.buttonDeelnemerUpd.TabIndex = 58;
+            this.buttonDeelnemerUpd.Text = "Update";
+            this.buttonDeelnemerUpd.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonDeelnemerCreate
             // 
-            this.button3.Location = new System.Drawing.Point(35, 308);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 50);
-            this.button3.TabIndex = 57;
-            this.button3.Text = "Voeg toe";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerCreate.Location = new System.Drawing.Point(35, 361);
+            this.buttonDeelnemerCreate.Name = "buttonDeelnemerCreate";
+            this.buttonDeelnemerCreate.Size = new System.Drawing.Size(122, 50);
+            this.buttonDeelnemerCreate.TabIndex = 57;
+            this.buttonDeelnemerCreate.Text = "Voeg toe";
+            this.buttonDeelnemerCreate.UseVisualStyleBackColor = true;
             // 
             // labelDeelnemerBadgeNummer
             // 
@@ -936,10 +936,10 @@
         private System.Windows.Forms.TextBox textBox49;
         private System.Windows.Forms.Button buttonOplDel;
         private System.Windows.Forms.Button buttonOplUpd;
-        private System.Windows.Forms.Button buttonOplAdd;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonOplCreate;
+        private System.Windows.Forms.Button buttonDeelnemerDel;
+        private System.Windows.Forms.Button buttonDeelnemerUpd;
+        private System.Windows.Forms.Button buttonDeelnemerCreate;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;

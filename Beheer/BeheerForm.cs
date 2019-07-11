@@ -35,39 +35,48 @@ namespace Beheer
             {
                 case 1:
                 case 2:
+                    List<Deelnemers> deelnLijst = new List<Deelnemers>();
                     using (var ctx = new DataContext())
                     {
-                        foreach (var item in ctx.Deelnemers)
-                        {
-                            listBoxDeelnemers.Items.Add(item);
-                        }            
+                        deelnLijst = ctx.Deelnemers.ToList();               
+                    }
+                    foreach (Deelnemers item in deelnLijst)
+                    {
+                        listBoxDeelnemers.Items.Add(item);
                     }
                     break;
                 case 3:
+                    List<NietOpleidingsDagen> verlofLijst = new List<NietOpleidingsDagen>();
                     using (var ctx = new DataContext())
                     {
-                        foreach (var item in ctx.NietOpleidingsDagen)
-                        {
-                            listBoxFeestdag.Items.Add(item);
-                        }
+                        verlofLijst = ctx.NietOpleidingsDagen.ToList();
+                        
+                    }
+                    foreach (NietOpleidingsDagen item in verlofLijst)
+                    {
+                        listBoxFeestdag.Items.Add(item);
                     }
                     break;
                 case 4:
+                    List<Docenten> docentLijst = new List<Docenten>();
                     using (var ctx = new DataContext())
                     {
-                        foreach (var item in ctx.Docenten)
-                        {
-                             listBoxDocent.Items.Add(item);
-                        }
+                        docentLijst = ctx.Docenten.ToList();
+                    }
+                    foreach (Docenten item in docentLijst)
+                    {
+                        listBoxDocent.Items.Add(item);
                     }
                     break;
                 case 5:
+                    List<Deelnemers> tijdDeelnLijst = new List<Deelnemers>();
                     using (var ctx = new DataContext())
                     {
-                        foreach (var item in ctx.Deelnemers)
-                        {
-                            listBoxDeelnemersTijd.Items.Add(item);
-                        }
+                        tijdDeelnLijst = ctx.Deelnemers.ToList();
+                    }
+                    foreach (Deelnemers item in tijdDeelnLijst)
+                    {
+                        listBoxDeelnemersTijd.Items.Add(item);
                     }
                     break;
                 default:
