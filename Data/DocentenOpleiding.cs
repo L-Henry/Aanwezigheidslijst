@@ -12,12 +12,5 @@ namespace Data
         public Docenten Docenten { get; set; }
         public OpleidingsInformatie OpleidingsInformatie { get; set; }
 
-
-
-
-
-
-
-
     }
 }
