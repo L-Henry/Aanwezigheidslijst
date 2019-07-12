@@ -276,7 +276,7 @@ namespace Beheer
             }
             if (comboBoxOpleiding.SelectedIndex == 0)
             {
-                //alles clearen
+                ClearAll();
             }
             else
             {
@@ -286,10 +286,37 @@ namespace Beheer
                     Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == comboOpl.Id);
                 }
 
-                //nu alles clearen en lijsten vullen herladen
+                ClearAll();
+
+                // nu alle listboxes herladen hervullen
             }
+        }
 
 
+
+
+
+
+        private void ClearAll()
+        {
+            foreach (TabPage tab in tabControl1.Controls)
+            {
+                foreach (Control item in tab.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).Text = string.Empty;
+                    }
+                    if (item is ListBox)
+                    {
+                        (item as ListBox).Items.Clear();
+                    }
+                    if (item is DateTimePicker)
+                    {
+                        (item as DateTimePicker).Value = DateTime.Today;
+                    }
+                }            
+            }
         }
     }
 }
