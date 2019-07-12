@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabOpl = new System.Windows.Forms.TabPage();
+            this.dateTimePickerOplEind = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerOplStart = new System.Windows.Forms.DateTimePicker();
             this.buttonOplDel = new System.Windows.Forms.Button();
             this.buttonOplUpd = new System.Windows.Forms.Button();
             this.buttonOplCreate = new System.Windows.Forms.Button();
@@ -43,16 +46,14 @@
             this.labelOplNaam = new System.Windows.Forms.Label();
             this.labelOplInstelling = new System.Windows.Forms.Label();
             this.labelIdOpleiding = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBoxIdOpleiding = new System.Windows.Forms.TextBox();
+            this.textBoxOplCode = new System.Windows.Forms.TextBox();
+            this.textBoxOplOE = new System.Windows.Forms.TextBox();
+            this.textBoxOplRef = new System.Windows.Forms.TextBox();
+            this.textBoxOplPlaats = new System.Windows.Forms.TextBox();
+            this.textBoxOplContact = new System.Windows.Forms.TextBox();
+            this.textBoxOpl = new System.Windows.Forms.TextBox();
+            this.textBoxOplInstelling = new System.Windows.Forms.TextBox();
+            this.textBoxOplId = new System.Windows.Forms.TextBox();
             this.tabDeelnemers = new System.Windows.Forms.TabPage();
             this.listBoxDeelnemers = new System.Windows.Forms.ListBox();
             this.buttonDeelnemerDel = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.labelIdDeelnemer = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.tabFeest = new System.Windows.Forms.TabPage();
@@ -106,6 +106,8 @@
             this.textBox49 = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxOpleiding = new System.Windows.Forms.ToolStripComboBox();
+            this.errorProviderOplInfoTab = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabOpl.SuspendLayout();
             this.tabDeelnemers.SuspendLayout();
@@ -113,6 +115,7 @@
             this.tabDocent.SuspendLayout();
             this.tabTijd.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderOplInfoTab)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -131,6 +134,8 @@
             // 
             // tabOpl
             // 
+            this.tabOpl.Controls.Add(this.dateTimePickerOplEind);
+            this.tabOpl.Controls.Add(this.dateTimePickerOplStart);
             this.tabOpl.Controls.Add(this.buttonOplDel);
             this.tabOpl.Controls.Add(this.buttonOplUpd);
             this.tabOpl.Controls.Add(this.buttonOplCreate);
@@ -144,16 +149,14 @@
             this.tabOpl.Controls.Add(this.labelOplNaam);
             this.tabOpl.Controls.Add(this.labelOplInstelling);
             this.tabOpl.Controls.Add(this.labelIdOpleiding);
-            this.tabOpl.Controls.Add(this.textBox10);
-            this.tabOpl.Controls.Add(this.textBox9);
-            this.tabOpl.Controls.Add(this.textBox8);
-            this.tabOpl.Controls.Add(this.textBox7);
-            this.tabOpl.Controls.Add(this.textBox6);
-            this.tabOpl.Controls.Add(this.textBox5);
-            this.tabOpl.Controls.Add(this.textBox4);
-            this.tabOpl.Controls.Add(this.textBox3);
-            this.tabOpl.Controls.Add(this.textBox2);
-            this.tabOpl.Controls.Add(this.textBoxIdOpleiding);
+            this.tabOpl.Controls.Add(this.textBoxOplCode);
+            this.tabOpl.Controls.Add(this.textBoxOplOE);
+            this.tabOpl.Controls.Add(this.textBoxOplRef);
+            this.tabOpl.Controls.Add(this.textBoxOplPlaats);
+            this.tabOpl.Controls.Add(this.textBoxOplContact);
+            this.tabOpl.Controls.Add(this.textBoxOpl);
+            this.tabOpl.Controls.Add(this.textBoxOplInstelling);
+            this.tabOpl.Controls.Add(this.textBoxOplId);
             this.tabOpl.Location = new System.Drawing.Point(4, 29);
             this.tabOpl.Name = "tabOpl";
             this.tabOpl.Padding = new System.Windows.Forms.Padding(3);
@@ -161,6 +164,24 @@
             this.tabOpl.TabIndex = 0;
             this.tabOpl.Text = "Opleiding info";
             this.tabOpl.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePickerOplEind
+            // 
+            this.dateTimePickerOplEind.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerOplEind.Location = new System.Drawing.Point(275, 366);
+            this.dateTimePickerOplEind.MinDate = new System.DateTime(2019, 7, 12, 0, 0, 0, 0);
+            this.dateTimePickerOplEind.Name = "dateTimePickerOplEind";
+            this.dateTimePickerOplEind.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerOplEind.TabIndex = 24;
+            // 
+            // dateTimePickerOplStart
+            // 
+            this.dateTimePickerOplStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerOplStart.Location = new System.Drawing.Point(275, 332);
+            this.dateTimePickerOplStart.MinDate = new System.DateTime(2019, 7, 12, 0, 0, 0, 0);
+            this.dateTimePickerOplStart.Name = "dateTimePickerOplStart";
+            this.dateTimePickerOplStart.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerOplStart.TabIndex = 23;
             // 
             // buttonOplDel
             // 
@@ -179,6 +200,7 @@
             this.buttonOplUpd.TabIndex = 21;
             this.buttonOplUpd.Text = "Update";
             this.buttonOplUpd.UseVisualStyleBackColor = true;
+            this.buttonOplUpd.Click += new System.EventHandler(this.ButtonOplUpd_Click);
             // 
             // buttonOplCreate
             // 
@@ -188,6 +210,7 @@
             this.buttonOplCreate.TabIndex = 20;
             this.buttonOplCreate.Text = "Creeër nieuwe opleiding";
             this.buttonOplCreate.UseVisualStyleBackColor = true;
+            this.buttonOplCreate.Click += new System.EventHandler(this.ButtonOplCreate_Click);
             // 
             // labelEindDatum
             // 
@@ -279,79 +302,66 @@
             this.labelIdOpleiding.TabIndex = 10;
             this.labelIdOpleiding.Text = "Id van opleiding";
             // 
-            // textBox10
+            // textBoxOplCode
             // 
-            this.textBox10.Location = new System.Drawing.Point(275, 366);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(221, 26);
-            this.textBox10.TabIndex = 9;
+            this.textBoxOplCode.Location = new System.Drawing.Point(275, 296);
+            this.textBoxOplCode.Name = "textBoxOplCode";
+            this.textBoxOplCode.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplCode.TabIndex = 7;
             // 
-            // textBox9
+            // textBoxOplOE
             // 
-            this.textBox9.Location = new System.Drawing.Point(275, 332);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(221, 26);
-            this.textBox9.TabIndex = 8;
+            this.textBoxOplOE.Location = new System.Drawing.Point(275, 262);
+            this.textBoxOplOE.Name = "textBoxOplOE";
+            this.textBoxOplOE.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplOE.TabIndex = 6;
             // 
-            // textBox8
+            // textBoxOplRef
             // 
-            this.textBox8.Location = new System.Drawing.Point(275, 296);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(221, 26);
-            this.textBox8.TabIndex = 7;
+            this.textBoxOplRef.Location = new System.Drawing.Point(275, 228);
+            this.textBoxOplRef.Name = "textBoxOplRef";
+            this.textBoxOplRef.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplRef.TabIndex = 5;
             // 
-            // textBox7
+            // textBoxOplPlaats
             // 
-            this.textBox7.Location = new System.Drawing.Point(275, 262);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(221, 26);
-            this.textBox7.TabIndex = 6;
+            this.textBoxOplPlaats.Location = new System.Drawing.Point(275, 194);
+            this.textBoxOplPlaats.Name = "textBoxOplPlaats";
+            this.textBoxOplPlaats.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplPlaats.TabIndex = 4;
             // 
-            // textBox6
+            // textBoxOplContact
             // 
-            this.textBox6.Location = new System.Drawing.Point(275, 228);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(221, 26);
-            this.textBox6.TabIndex = 5;
+            this.textBoxOplContact.Location = new System.Drawing.Point(275, 160);
+            this.textBoxOplContact.Name = "textBoxOplContact";
+            this.textBoxOplContact.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplContact.TabIndex = 3;
             // 
-            // textBox5
+            // textBoxOpl
             // 
-            this.textBox5.Location = new System.Drawing.Point(275, 194);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(221, 26);
-            this.textBox5.TabIndex = 4;
+            this.textBoxOpl.Location = new System.Drawing.Point(275, 126);
+            this.textBoxOpl.Name = "textBoxOpl";
+            this.textBoxOpl.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOpl.TabIndex = 2;
             // 
-            // textBox4
+            // textBoxOplInstelling
             // 
-            this.textBox4.Location = new System.Drawing.Point(275, 160);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(221, 26);
-            this.textBox4.TabIndex = 3;
+            this.textBoxOplInstelling.Location = new System.Drawing.Point(275, 92);
+            this.textBoxOplInstelling.Name = "textBoxOplInstelling";
+            this.textBoxOplInstelling.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplInstelling.TabIndex = 1;
             // 
-            // textBox3
+            // textBoxOplId
             // 
-            this.textBox3.Location = new System.Drawing.Point(275, 126);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(221, 26);
-            this.textBox3.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(275, 92);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(221, 26);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBoxIdOpleiding
-            // 
-            this.textBoxIdOpleiding.Location = new System.Drawing.Point(275, 58);
-            this.textBoxIdOpleiding.Name = "textBoxIdOpleiding";
-            this.textBoxIdOpleiding.ReadOnly = true;
-            this.textBoxIdOpleiding.Size = new System.Drawing.Size(221, 26);
-            this.textBoxIdOpleiding.TabIndex = 0;
+            this.textBoxOplId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxOplId.Name = "textBoxOplId";
+            this.textBoxOplId.ReadOnly = true;
+            this.textBoxOplId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplId.TabIndex = 0;
             // 
             // tabDeelnemers
             // 
+            this.tabDeelnemers.Controls.Add(this.dateTimePicker1);
             this.tabDeelnemers.Controls.Add(this.listBoxDeelnemers);
             this.tabDeelnemers.Controls.Add(this.buttonDeelnemerDel);
             this.tabDeelnemers.Controls.Add(this.buttonDeelnemerUpd);
@@ -363,7 +373,6 @@
             this.tabDeelnemers.Controls.Add(this.labelIdDeelnemer);
             this.tabDeelnemers.Controls.Add(this.textBox15);
             this.tabDeelnemers.Controls.Add(this.textBox16);
-            this.tabDeelnemers.Controls.Add(this.textBox17);
             this.tabDeelnemers.Controls.Add(this.textBox18);
             this.tabDeelnemers.Controls.Add(this.textBox19);
             this.tabDeelnemers.Location = new System.Drawing.Point(4, 29);
@@ -468,13 +477,6 @@
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(221, 26);
             this.textBox16.TabIndex = 45;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(275, 126);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(221, 26);
-            this.textBox17.TabIndex = 44;
             // 
             // textBox18
             // 
@@ -816,6 +818,7 @@
             // 
             this.textBox48.Location = new System.Drawing.Point(275, 94);
             this.textBox48.Name = "textBox48";
+            this.textBox48.ReadOnly = true;
             this.textBox48.Size = new System.Drawing.Size(221, 26);
             this.textBox48.TabIndex = 43;
             // 
@@ -841,6 +844,18 @@
             // 
             this.comboBoxOpleiding.Name = "comboBoxOpleiding";
             this.comboBoxOpleiding.Size = new System.Drawing.Size(121, 33);
+            this.comboBoxOpleiding.SelectedIndexChanged += new System.EventHandler(this.ComboBoxOpleiding_SelectedIndexChanged);
+            // 
+            // errorProviderOplInfoTab
+            // 
+            this.errorProviderOplInfoTab.ContainerControl = this;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(275, 126);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePicker1.TabIndex = 61;
             // 
             // BeheerForm
             // 
@@ -865,6 +880,7 @@
             this.tabTijd.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderOplInfoTab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -890,16 +906,14 @@
         private System.Windows.Forms.Label labelOplNaam;
         private System.Windows.Forms.Label labelOplInstelling;
         private System.Windows.Forms.Label labelIdOpleiding;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBoxIdOpleiding;
+        private System.Windows.Forms.TextBox textBoxOplCode;
+        private System.Windows.Forms.TextBox textBoxOplOE;
+        private System.Windows.Forms.TextBox textBoxOplRef;
+        private System.Windows.Forms.TextBox textBoxOplPlaats;
+        private System.Windows.Forms.TextBox textBoxOplContact;
+        private System.Windows.Forms.TextBox textBoxOpl;
+        private System.Windows.Forms.TextBox textBoxOplInstelling;
+        private System.Windows.Forms.TextBox textBoxOplId;
         private System.Windows.Forms.Label labelDeelnemerBadgeNummer;
         private System.Windows.Forms.Label labelDeelnemerWoonplaats;
         private System.Windows.Forms.Label labelDeelnemerGeboortedatum;
@@ -907,7 +921,6 @@
         private System.Windows.Forms.Label labelIdDeelnemer;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label labelVerlofOpleidingsId;
@@ -950,6 +963,10 @@
         private System.Windows.Forms.ListBox listBoxFeestdag;
         private System.Windows.Forms.ListBox listBoxDocent;
         private System.Windows.Forms.ListBox listBoxDeelnemersTijd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOplEind;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOplStart;
+        private System.Windows.Forms.ErrorProvider errorProviderOplInfoTab;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 
