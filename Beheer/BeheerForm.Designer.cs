@@ -842,8 +842,10 @@
             // 
             // comboBoxOpleiding
             // 
+            this.comboBoxOpleiding.Items.AddRange(new object[] {
+            "Nieuwe opleiding aanmaken"});
             this.comboBoxOpleiding.Name = "comboBoxOpleiding";
-            this.comboBoxOpleiding.Size = new System.Drawing.Size(121, 33);
+            this.comboBoxOpleiding.Size = new System.Drawing.Size(242, 33);
             this.comboBoxOpleiding.SelectedIndexChanged += new System.EventHandler(this.ComboBoxOpleiding_SelectedIndexChanged);
             // 
             // errorProviderOplInfoTab

@@ -13,7 +13,11 @@ namespace Beheer
 {
     public partial class BeheerForm : Form
     {
-        public OpleidingsInformatie Opleiding { get; set; }
+        OpleidingsInformatie Opleiding { get; set; }
+        List<Deelnemers> DeelnLijst = new List<Deelnemers>();
+        List<NietOpleidingsDagen> VerlofLijst = new List<NietOpleidingsDagen>();
+        List<Docenten> DocentLijst = new List<Docenten>();
+        List<Deelnemers> TijdDeelnLijst = new List<Deelnemers>();
 
         bool IsValid = true;
 
@@ -28,11 +32,9 @@ namespace Beheer
             {
                 foreach (var item in ctx.OpleidingsInformatie)
                 {
-                    comboBoxOpleiding.Items.Add(item.Opleiding);
+                    comboBoxOpleiding.Items.Add(item);
                 }
             }
-
-  
         }
 
 
@@ -137,19 +139,23 @@ namespace Beheer
                 case 0:
                     OpleidingsInformatie opl = new OpleidingsInformatie();
                     OpleidingsInformatie oplCombo = comboBoxOpleiding.SelectedItem as OpleidingsInformatie;
-                    using (var ctx = new DataContext())
+
+                    if (comboBoxOpleiding.SelectedIndex != -1)
                     {
-                        opl = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == oplCombo.Id);
+                        using (var ctx = new DataContext())
+                        {
+                            opl = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == oplCombo.Id);
+                        }
+                        textBoxOplId.Text = opl.Id.ToString();
+                        textBoxOplInstelling.Text = opl.OpleidingsInstelling;
+                        textBoxOpl.Text = opl.Opleiding;
+                        textBoxOplPlaats.Text = opl.Contactpersoon;
+                        textBoxOplRef.Text = opl.ReferentieOpledingsPlaats;
+                        textBoxOplOE.Text = opl.OeNummer.ToString();
+                        textBoxOplCode.Text = opl.Opleidngscode.ToString();
+                        dateTimePickerOplStart.Value = opl.StartDatum;
+                        dateTimePickerOplEind.Value = opl.EindDatum;
                     }
-                    textBoxOplId.Text = opl.Id.ToString();
-                    textBoxOplInstelling.Text = opl.OpleidingsInstelling;
-                    textBoxOpl.Text = opl.Opleiding;
-                    textBoxOplPlaats.Text = opl.Contactpersoon;
-                    textBoxOplRef.Text = opl.ReferentieOpledingsPlaats;
-                    textBoxOplOE.Text = opl.OeNummer.ToString();
-                    textBoxOplCode.Text = opl.Opleidngscode.ToString();
-                    dateTimePickerOplStart.Value = opl.StartDatum;
-                    dateTimePickerOplEind.Value = opl.EindDatum;
                     break;
                 case 1:
                     List<Deelnemers> deelnLijst = new List<Deelnemers>();
@@ -205,7 +211,7 @@ namespace Beheer
         {
             OplTab_Validating(sender, null);
 
-            if (IsValid)
+            if (IsValid && textBoxOplId == null)// && ( comboBoxOpleiding.SelectedIndex == 0 || comboBoxOpleiding.SelectedIndex == -1)) //mogelijk nodig
             {
                 OpleidingsInformatie nieuweOpl = new OpleidingsInformatie
                 {
@@ -226,6 +232,10 @@ namespace Beheer
                     Opleiding = ctx.OpleidingsInformatie.Last();
                 }
                 textBoxOplId.Text = Opleiding.Id.ToString();
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonOplCreate, "Selecteer eerst creeër nieuwe opleiding in menu.");
             }
         }
 
@@ -260,6 +270,25 @@ namespace Beheer
 
         private void ComboBoxOpleiding_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxOpleiding.SelectedIndex == -1)
+            {
+                //niets doen
+            }
+            if (comboBoxOpleiding.SelectedIndex == 0)
+            {
+                //alles clearen
+            }
+            else
+            {
+                OpleidingsInformatie comboOpl = comboBoxOpleiding.SelectedItem as OpleidingsInformatie;
+                using (var ctx = new DataContext())
+                {
+                    Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == comboOpl.Id);
+                }
+
+                //nu alles clearen en lijsten vullen herladen
+            }
+
 
         }
     }
