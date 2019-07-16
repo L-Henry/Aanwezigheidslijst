@@ -13,5 +13,11 @@ namespace Data
         public DateTime GeboorteDatum { get; set; }
         public string Woonplaats { get; set; }
         public int Badgenummer { get; set; }
+
+        public override string ToString()
+        {
+            return Naam + " (" + Id + ") " + GeboorteDatum;
+        }
+
     }
 }
