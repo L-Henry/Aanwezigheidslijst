@@ -668,6 +668,7 @@
             this.listBoxDocent.Name = "listBoxDocent";
             this.listBoxDocent.Size = new System.Drawing.Size(358, 624);
             this.listBoxDocent.TabIndex = 61;
+            this.listBoxDocent.SelectedIndexChanged += new System.EventHandler(this.ListBoxDocent_SelectedIndexChanged);
             // 
             // buttonDocentDel
             // 
@@ -677,6 +678,7 @@
             this.buttonDocentDel.TabIndex = 57;
             this.buttonDocentDel.Text = "Verwijder";
             this.buttonDocentDel.UseVisualStyleBackColor = true;
+            this.buttonDocentDel.Click += new System.EventHandler(this.ButtonDocentDel_Click);
             // 
             // buttonDocentUpd
             // 
@@ -686,6 +688,7 @@
             this.buttonDocentUpd.TabIndex = 56;
             this.buttonDocentUpd.Text = "Update";
             this.buttonDocentUpd.UseVisualStyleBackColor = true;
+            this.buttonDocentUpd.Click += new System.EventHandler(this.ButtonDocentUpd_Click);
             // 
             // buttonDocentAdd
             // 
@@ -695,6 +698,7 @@
             this.buttonDocentAdd.TabIndex = 55;
             this.buttonDocentAdd.Text = "Voeg toe";
             this.buttonDocentAdd.UseVisualStyleBackColor = true;
+            this.buttonDocentAdd.Click += new System.EventHandler(this.ButtonDocentAdd_Click);
             // 
             // labelDocentBedrijf
             // 

@@ -25,6 +25,7 @@ namespace Beheer
         bool IsValidOpl = true;
         bool IsValidDeeln = true;
         bool IsValidVerlof = true;
+        bool IsValidDocent = true;
 
         public BeheerForm()
         {
@@ -99,8 +100,8 @@ namespace Beheer
                 DocOplLijst = ctx.DocentenOpleiding.ToList();
             }
 
-            listBoxDeelnemers.Items.Add("Nieuwe deelnemer toevoegen");
             //deelnemers listbox vullen
+            listBoxDeelnemers.Items.Add("Nieuwe deelnemer toevoegen");
             var deelLijst = (from d in DeelnLijst
                              join deelOpl in DeelnOplLijst on d.Id equals deelOpl.Deelnemer.Id
                              //join o in OplLijst on deelOpl.OpleidingsInformatie.Id equals o.Id
@@ -110,6 +111,7 @@ namespace Beheer
             foreach (var deeln in deelLijst)
             {
                 listBoxDeelnemers.Items.Add(deeln);
+                listBoxDeelnemersTijd.Items.Add(deeln); //om de deelnemers ook in tijdregsitratie tab te laden
             }
 
             //verlofdagen in listbox vullen
@@ -124,6 +126,19 @@ namespace Beheer
             }
             checkBoxVerlofVoormiddag.Checked = true;
             checkBoxVerlofNamiddag.Checked = true;
+
+            //docenten in listbox invullen
+            listBoxDocent.Items.Add("Voeg nieuwe docent toe.");
+            var docLijst = from d in DocentLijst
+                           join docOpl in DocOplLijst on d.Id equals docOpl.Docenten.Id
+                           where docOpl.OpleidingsInformatie.Id == Opleiding.Id
+                           select d;
+            docLijst = docLijst.OrderBy(d => d.Naam);
+            foreach (var doc in docLijst)
+            {
+                listBoxDocent.Items.Add(doc);
+            }
+
 
         }
         // alle listboxen en textboxen leegmaken voor creatie nieuwe opleiding
@@ -486,7 +501,7 @@ namespace Beheer
             //ligt verlofdag binnen oplieidng?
             if (dateTimePickerVerlof.Value.Date > Opleiding.EindDatum)
             {
-                errorProviderOplInfoTab.SetError(dateTimePickerVerlof, "Datum ligt voorbij einddatum van deze oplieiding.");
+                errorProviderOplInfoTab.SetError(dateTimePickerVerlof, "Datum ligt voorbij einddatum van deze opleiding.");
                 IsValidVerlof = false;
             }
             else
@@ -512,11 +527,11 @@ namespace Beheer
             VerlofTab_validatie();
 
             //is deze datum al toegevoegd? ja -> update ipv toevoegen
-            //var verlofLijst = (from v in VerlofLijst
-            //                   where v.OpleidingsInformatie.Id == Opleiding.Id
-            //                   select v);
-            //verlofLijst = verlofLijst.OrderBy(v => v.Datum.Date);
-            foreach (NietOpleidingsDagen item in listBoxFeestdag.Items)
+            var verlofLijst = (from v in VerlofLijst
+                               where v.OpleidingsInformatie.Id == Opleiding.Id
+                               select v);
+            verlofLijst = verlofLijst.OrderBy(v => v.Datum.Date);
+            foreach (NietOpleidingsDagen item in verlofLijst)
             {
                 if (item.Datum == dateTimePickerVerlof.Value.Date)
                 {
@@ -627,13 +642,147 @@ namespace Beheer
             }
         }
 
+
         //validatie docent
         private void DocentTab_Validatie()
         {
+            IsValidDocent = true;
+            //inhoud van textboxes validaten, of er iets in staat
+            foreach (TextBox textboxgen in tabControl1.SelectedTab.Controls.OfType<TextBox>())
+            {
+                if (textboxgen.Name.Contains("Id"))
+                {
+
+                }
+                else if (textboxgen.Text.Length < 1)
+                {
+                    errorProviderOplInfoTab.SetError(textboxgen, "Geen input.");
+                    IsValidDocent = false;
+                }
+                else
+                {
+                    errorProviderOplInfoTab.SetError(textboxgen, string.Empty);
+                }
+            }
+            //check of naam enkel letter is
+            if (!textBoxDocentNaam.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && textBoxDocentNaam.Text.Length > 0)
+            {
+                errorProviderOplInfoTab.SetError(textBoxDocentNaam, "Gelidige naam bevat enkel letters en spatie");
+                IsValidDocent = false;
+            }
+            else if (textBoxDocentNaam.Text.Length > 0)
+            {
+                errorProviderOplInfoTab.SetError(textBoxDocentNaam, string.Empty);
+            }
+        }
+
+        private void ButtonDocentAdd_Click(object sender, EventArgs e)
+        {
+            DocentTab_Validatie();
+
+            if (comboBoxOpleiding.SelectedIndex < 1)
+            {
+                errorProviderOplInfoTab.SetError(buttonDocentAdd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+            }
+            else if (IsValidDocent && textBoxDocentId.Text == "")
+            {
+                if (DocentLijst.Any(d => d.Naam.ToLower() == textBoxDocentNaam.Text.ToLower() && d.Bedrijf.ToLower() == textBoxDocentBedrijf.Text.ToLower()))
+                {
+                    using (var ctx = new DataContext())
+                    {
+                        Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
+                        Docenten docentUpd = ctx.Docenten.SingleOrDefault(x => x.Naam.ToLower() == textBoxDocentNaam.Text.ToLower() 
+                                                                            && x.Bedrijf.ToLower() == textBoxDocentBedrijf.Text.ToLower());
+                        ctx.DocentenOpleiding.Add(new DocentenOpleiding { Docenten = docentUpd, OpleidingsInformatie = Opleiding });
+                        ctx.SaveChanges();
+                    }
+                }
+                else
+                {
+                    Docenten nieuweDoc = new Docenten
+                    {
+                        Naam = textBoxDocentNaam.Text,
+                        Bedrijf = textBoxDocentBedrijf.Text,
+                    };
+                    using (var ctx = new DataContext())
+                    {
+                        Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
+                        ctx.Docenten.Add(nieuweDoc);
+                        ctx.DocentenOpleiding.Add(new DocentenOpleiding { Docenten = nieuweDoc, OpleidingsInformatie = Opleiding });
+                        ctx.SaveChanges();
+
+                        DocentLijst = ctx.Docenten.ToList();
+                    }
+                    textBoxDocentId.Text = DocentLijst.Last().Id.ToString();
+                }
+                ClearAll();
+                LaadAlleListbox();
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonDocentAdd, "U probeert te updaten.");
+            }
 
         }
 
+        private void ButtonDocentUpd_Click(object sender, EventArgs e)
+        {
+            DocentTab_Validatie();
 
+            if (comboBoxOpleiding.SelectedIndex <= 1)
+            {
+                errorProviderOplInfoTab.SetError(buttonDocentUpd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+            }
+            else if (IsValidDocent && textBoxDocentId.Text != "")
+            {
+                int docId = int.Parse(textBoxDocentId.Text);
+                using (var ctx = new DataContext())
+                {
+                    Docenten docUpd = ctx.Docenten.SingleOrDefault(x => x.Id == docId);
+                    docUpd.Naam = textBoxDocentNaam.Text;
+                    docUpd.Bedrijf = textBoxDocentBedrijf.Text;
+                    ctx.SaveChanges();
+                }
+                ClearAll();
+                LaadAlleListbox();
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonDocentUpd, "U probeert een nieuwe deelnemer toe te voegen..");
+            }
+        }
+
+        private void ButtonDocentDel_Click(object sender, EventArgs e)
+        {
+            int delDocId = int.Parse(textBoxDocentId.Text);
+            using (var ctx = new DataContext())
+            {
+                var delDocOpl = ctx.DocentenOpleiding.SingleOrDefault(d => d.Docenten.Id == delDocId);
+                ctx.DocentenOpleiding.Remove(delDocOpl);
+                ctx.SaveChanges();
+            }
+            ClearAll();
+            LaadAlleListbox();
+        }
+
+        private void ListBoxDocent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxDocent.SelectedIndex > 0)
+            {
+                Docenten docent = listBoxDocent.SelectedItem as Docenten;
+                textBoxDocentId.Text = docent.Id.ToString();
+                textBoxDocentNaam.Text = docent.Naam;
+                textBoxDocentBedrijf.Text = docent.Bedrijf;
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonDocentAdd, string.Empty);
+
+                textBoxDocentId.Text = "";
+                textBoxDocentNaam.Text = "";
+                textBoxDocentBedrijf.Text = "";
+            }
+        }
     }
 }
 
