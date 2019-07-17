@@ -394,10 +394,13 @@
             // 
             this.listBoxDeelnemers.FormattingEnabled = true;
             this.listBoxDeelnemers.ItemHeight = 20;
+            this.listBoxDeelnemers.Items.AddRange(new object[] {
+            "Nieuwe deelnemer aanmaken"});
             this.listBoxDeelnemers.Location = new System.Drawing.Point(645, 43);
             this.listBoxDeelnemers.Name = "listBoxDeelnemers";
             this.listBoxDeelnemers.Size = new System.Drawing.Size(358, 624);
             this.listBoxDeelnemers.TabIndex = 60;
+            this.listBoxDeelnemers.SelectedIndexChanged += new System.EventHandler(this.ListBoxDeelnemers_SelectedIndexChanged);
             // 
             // buttonDeelnemerDel
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -93,13 +94,8 @@ namespace Beheer
                 DocOplLijst = ctx.DocentenOpleiding.ToList();
             }
 
-            OplLijst = OplLijst.OrderBy(x => x.Opleiding).ToList();
-            foreach (var opl in OplLijst)
-            {
-                comboBoxOpleiding.Items.Add(opl);
-            }
-
-            //deelnemers lisrbox vullen
+            listBoxDeelnemers.Items.Add("Nieuwe deelnemer toevoegen");
+            //deelnemers listbox vullen
             var deelLijst = (from d in DeelnLijst
                              join deelOpl in DeelnOplLijst on d.Id equals deelOpl.Deelnemer.Id
                              //join o in OplLijst on deelOpl.OpleidingsInformatie.Id equals o.Id
@@ -238,6 +234,8 @@ namespace Beheer
                 }
                 Opleiding = OplLijst.Last();
                 textBoxOplId.Text = Opleiding.Id.ToString();
+                comboBoxOpleiding.Items.Add(Opleiding);
+                OplLijst = OplLijst.OrderBy(x => x.Opleiding).ToList();
             }
             else
             {
@@ -424,7 +422,39 @@ namespace Beheer
 
         private void ButtonDeelnemerDel_Click(object sender, EventArgs e)
         {
+            //Deelnemers deelnemer = listBoxDeelnemers.SelectedItem as Deelnemers;
+            int delPerId = int.Parse(textBoxDeelnId.Text);
+            using (var ctx = new DataContext())
+            {
+                var delDeelnOpl = ctx.DeelnemersOpleidingen/*.Include(a=>a.Deelnemer).Include(o=>o.OpleidingsInformatie)*/.SingleOrDefault(d => d.Deelnemer.Id == delPerId);
+                ctx.DeelnemersOpleidingen.Remove(delDeelnOpl);
+                ctx.SaveChanges();
+            }
+            ClearAll();
+            LaadAlleListbox();
+        }
 
+        private void ListBoxDeelnemers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxDeelnemers.SelectedIndex > 0)
+            {
+                Deelnemers deelnemer = listBoxDeelnemers.SelectedItem as Deelnemers;
+                textBoxDeelnId.Text = deelnemer.Id.ToString();
+                textBoxDeelnNaam.Text = deelnemer.Naam;
+                dateTimePickerDeelnGeb.Value = deelnemer.GeboorteDatum.Date;
+                textBoxDeelnWoon.Text = deelnemer.Woonplaats;
+                textBoxDeelnBadge.Text = deelnemer.Badgenummer.ToString();
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonDeelnemerCreate, string.Empty);
+
+                textBoxDeelnId.Text = "";
+                textBoxDeelnNaam.Text = "";
+                dateTimePickerDeelnGeb.Value = DateTime.Today;
+                textBoxDeelnWoon.Text = "";
+                textBoxDeelnBadge.Text = "";
+            }
         }
     }
 }
