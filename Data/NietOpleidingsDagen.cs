@@ -14,7 +14,21 @@ namespace Data
         public bool Namiddag { get; set; }
         public OpleidingsInformatie OpleidingsInformatie { get; set; }
 
-
+        public override string ToString()
+        {
+            if (Voormiddag && !Namiddag)
+            {
+                return Datum.ToShortDateString() + " (voormiddag)";
+            }
+            else if (Namiddag && !Voormiddag)
+            {
+                return Datum.ToShortDateString() + " (namiddag)";
+            }
+            else
+            {
+                return Datum.ToShortDateString();
+            }
+        }
 
 
 

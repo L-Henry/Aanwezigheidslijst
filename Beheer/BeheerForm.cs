@@ -24,6 +24,7 @@ namespace Beheer
 
         bool IsValidOpl = true;
         bool IsValidDeeln = true;
+        bool IsValidVerlof = true;
 
         public BeheerForm()
         {
@@ -46,6 +47,9 @@ namespace Beheer
             {
                 comboBoxOpleiding.Items.Add(opl);
             }
+
+            checkBoxVerlofVoormiddag.Checked = true;
+            checkBoxVerlofNamiddag.Checked = true;
         }
 
         //combobox selectie
@@ -58,7 +62,8 @@ namespace Beheer
             else if (comboBoxOpleiding.SelectedIndex == 0)
             {
                 ClearAll();
-                LaadAlleListbox();
+                tabControl1.SelectedIndex = 0;
+                //LaadAlleListbox(); //mag niet denk ik
             }
             else
             {
@@ -107,6 +112,19 @@ namespace Beheer
                 listBoxDeelnemers.Items.Add(deeln);
             }
 
+            //verlofdagen in listbox vullen
+            listBoxFeestdag.Items.Add("Voeg nieuwe feestdag toe");
+            var verlofLijst = (from v in VerlofLijst
+                               where v.OpleidingsInformatie.Id == Opleiding.Id
+                               select v);
+            verlofLijst = verlofLijst.OrderBy(v => v.Datum.Date);
+            foreach (var dag in verlofLijst)
+            {
+                listBoxFeestdag.Items.Add(dag);
+            }
+            checkBoxVerlofVoormiddag.Checked = true;
+            checkBoxVerlofNamiddag.Checked = true;
+
         }
         // alle listboxen en textboxen leegmaken voor creatie nieuwe opleiding
         private void ClearAll()
@@ -130,6 +148,7 @@ namespace Beheer
                 }
             }
         }
+
 
         //validatie opleidingsinformatie
         private void OplTab_Validating()
@@ -182,14 +201,14 @@ namespace Beheer
             {
                 errorProviderOplInfoTab.SetError(textBoxOplCode, string.Empty);
             }
-        }   
+        }
 
         // buttons opleidingsinfo tabblad
         private void ButtonOplCreate_Click(object sender, EventArgs e)
         {
             OplTab_Validating();
 
-            //check of OE of code al bestaat
+            //check of OE of code al bestaat. Moet enkel in toevoeg, niet in update.
             foreach (OpleidingsInformatie item in OplLijst)
             {
                 if (item.OeNummer.ToString() == textBoxOplOE.Text)
@@ -303,7 +322,7 @@ namespace Beheer
                 }
             }
             //check of naam enkel letter is
-            if (!textBoxDeelnNaam.Text.All(c=>char.IsLetter(c) || char.IsWhiteSpace(c) ) && textBoxDeelnNaam.Text.Length > 0)
+            if (!textBoxDeelnNaam.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && textBoxDeelnNaam.Text.Length > 0)
             {
                 errorProviderOplInfoTab.SetError(textBoxDeelnNaam, "Gelidige naam bevat enkel letters en spatie");
                 IsValidDeeln = false;
@@ -313,7 +332,7 @@ namespace Beheer
                 errorProviderOplInfoTab.SetError(textBoxDeelnNaam, string.Empty);
             }
             //check of badgenummer een nummer is
-            if (!textBoxDeelnBadge.Text.All(c => char.IsDigit(c)) && textBoxDeelnBadge.Text.Length > 0 )
+            if (!textBoxDeelnBadge.Text.All(c => char.IsDigit(c)) && textBoxDeelnBadge.Text.Length > 0)
             {
                 errorProviderOplInfoTab.SetError(textBoxDeelnBadge, "Enkel cijfers invoeren.");
                 IsValidDeeln = false;
@@ -322,6 +341,7 @@ namespace Beheer
             {
                 errorProviderOplInfoTab.SetError(textBoxDeelnBadge, string.Empty);
             }
+
         }
 
         //buttons deelnemer tabblad
@@ -329,7 +349,7 @@ namespace Beheer
         {
             DeelnTab_Validating();
 
-            //check of badge nummer al bestaat
+            //check of badge nummer al bestaat, moet enkel in toevoegen, niet in updaten.
             foreach (Deelnemers item in DeelnLijst)
             {
                 if (item.Badgenummer.ToString() == textBoxDeelnBadge.Text)
@@ -345,16 +365,16 @@ namespace Beheer
 
             if (comboBoxOpleiding.SelectedIndex < 1)
             {
-                errorProviderOplInfoTab.SetError(toolStrip1, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+                errorProviderOplInfoTab.SetError(buttonDeelnemerCreate, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
             }
-
             else if (IsValidDeeln && textBoxDeelnId.Text == "")
             {
-                if (DeelnLijst.Any(d=>d.Naam.ToLower() == textBoxDeelnNaam.Text.ToLower() && d.GeboorteDatum.Date == dateTimePickerDeelnGeb.Value.Date ))
+                if (DeelnLijst.Any(d => d.Naam.ToLower() == textBoxDeelnNaam.Text.ToLower() && d.GeboorteDatum.Date == dateTimePickerDeelnGeb.Value.Date))
                 {
                     using (var ctx = new DataContext())
                     {
-                        Deelnemers deelnUpd = ctx.Deelnemers.SingleOrDefault(x => x.Naam == textBoxDeelnNaam.Text);
+                        Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
+                        Deelnemers deelnUpd = ctx.Deelnemers.SingleOrDefault(x => x.Naam == textBoxDeelnNaam.Text && x.GeboorteDatum == dateTimePickerDeelnGeb.Value.Date);
                         deelnUpd.Woonplaats = textBoxDeelnWoon.Text;
                         deelnUpd.Badgenummer = int.Parse(textBoxDeelnBadge.Text);
                         ctx.DeelnemersOpleidingen.Add(new DeelnemersOpleidingen { Deelnemer = deelnUpd, OpleidingsInformatie = Opleiding });
@@ -374,7 +394,7 @@ namespace Beheer
                     };
                     using (var ctx = new DataContext())
                     {
-                        Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x=>x.Id == Opleiding.Id);
+                        Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
                         ctx.Deelnemers.Add(nieuweDeeln);
                         ctx.DeelnemersOpleidingen.Add(new DeelnemersOpleidingen { Deelnemer = nieuweDeeln, OpleidingsInformatie = Opleiding });
                         ctx.SaveChanges();
@@ -398,13 +418,14 @@ namespace Beheer
 
             if (comboBoxOpleiding.SelectedIndex <= 1)
             {
-                errorProviderOplInfoTab.SetError(toolStrip1, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+                errorProviderOplInfoTab.SetError(buttonDeelnemerUpd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
             }
             else if (IsValidDeeln && textBoxDeelnId.Text != "")
             {
+                int deelnId = int.Parse(textBoxDeelnId.Text);
                 using (var ctx = new DataContext())
                 {
-                    Deelnemers deelnUpd = ctx.Deelnemers.SingleOrDefault(x => x.Id == int.Parse(textBoxDeelnId.Text));
+                    Deelnemers deelnUpd = ctx.Deelnemers.SingleOrDefault(x => x.Id == deelnId);
                     deelnUpd.Naam = textBoxDeelnNaam.Text;
                     deelnUpd.GeboorteDatum = dateTimePickerDeelnGeb.Value.Date;
                     deelnUpd.Woonplaats = textBoxDeelnWoon.Text;
@@ -426,7 +447,7 @@ namespace Beheer
             int delPerId = int.Parse(textBoxDeelnId.Text);
             using (var ctx = new DataContext())
             {
-                var delDeelnOpl = ctx.DeelnemersOpleidingen/*.Include(a=>a.Deelnemer).Include(o=>o.OpleidingsInformatie)*/.SingleOrDefault(d => d.Deelnemer.Id == delPerId);
+                var delDeelnOpl = ctx.DeelnemersOpleidingen.SingleOrDefault(d => d.Deelnemer.Id == delPerId);
                 ctx.DeelnemersOpleidingen.Remove(delDeelnOpl);
                 ctx.SaveChanges();
             }
@@ -456,10 +477,165 @@ namespace Beheer
                 textBoxDeelnBadge.Text = "";
             }
         }
+
+
+        //verlof dag tab validatie
+        private void VerlofTab_validatie()
+        {
+            IsValidVerlof = true;
+            //ligt verlofdag binnen oplieidng?
+            if (dateTimePickerVerlof.Value.Date > Opleiding.EindDatum)
+            {
+                errorProviderOplInfoTab.SetError(dateTimePickerVerlof, "Datum ligt voorbij einddatum van deze oplieiding.");
+                IsValidVerlof = false;
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(dateTimePickerVerlof, string.Empty);
+            }
+            //is ten minste een voormiddag of namiddag aangeduid
+            if (!checkBoxVerlofNamiddag.Checked && !checkBoxVerlofVoormiddag.Checked)
+            {
+                errorProviderOplInfoTab.SetError(checkBoxVerlofVoormiddag, "Selecteer ten minste een voormiddag of namiddag.");
+                errorProviderOplInfoTab.SetError(checkBoxVerlofNamiddag, "Selecteer ten minste een voormiddag of namiddag.");
+                IsValidVerlof = false;
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(checkBoxVerlofVoormiddag, string.Empty);
+                errorProviderOplInfoTab.SetError(checkBoxVerlofNamiddag, string.Empty);
+            }
+        }
+
+        private void ButtonVerlofAdd_Click(object sender, EventArgs e)
+        {
+            VerlofTab_validatie();
+
+            //is deze datum al toegevoegd? ja -> update ipv toevoegen
+            //var verlofLijst = (from v in VerlofLijst
+            //                   where v.OpleidingsInformatie.Id == Opleiding.Id
+            //                   select v);
+            //verlofLijst = verlofLijst.OrderBy(v => v.Datum.Date);
+            foreach (NietOpleidingsDagen item in listBoxFeestdag.Items)
+            {
+                if (item.Datum == dateTimePickerVerlof.Value.Date)
+                {
+                    errorProviderOplInfoTab.SetError(dateTimePickerVerlof, "Deze dag is al toegevoegd. Probeer update.");
+                    IsValidVerlof = false;
+                }
+            }
+
+            if (comboBoxOpleiding.SelectedIndex < 1)
+            {
+                errorProviderOplInfoTab.SetError(buttonVerlofAdd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+            }
+            else if (IsValidVerlof && textBoxVerlofId.Text == "")
+            {
+                using (var ctx = new DataContext())
+                {
+                    Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
+                    NietOpleidingsDagen nieuweVerlofDag = new NietOpleidingsDagen
+                    {
+                        Datum = dateTimePickerVerlof.Value.Date,
+                        Voormiddag = checkBoxVerlofVoormiddag.Checked,
+                        Namiddag = checkBoxVerlofNamiddag.Checked,
+                        OpleidingsInformatie = Opleiding
+                    };
+                    ctx.NietOpleidingsDagen.Add(nieuweVerlofDag);
+                    ctx.SaveChanges();
+
+                    VerlofLijst = ctx.NietOpleidingsDagen.ToList();
+                }
+                textBoxVerlofId.Text = VerlofLijst.Last().Id.ToString();
+
+                ClearAll();
+                LaadAlleListbox();
+            }
+            else if (textBoxVerlofId.Text != "")
+            {
+                errorProviderOplInfoTab.SetError(buttonVerlofAdd, "U probeert te updaten.");
+            }
+        }
+
+        private void ButtonVerlofUpd_Click(object sender, EventArgs e)
+        {
+            VerlofTab_validatie();
+
+            if (comboBoxOpleiding.SelectedIndex < 1)
+            {
+                errorProviderOplInfoTab.SetError(buttonVerlofUpd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+            }
+            else if (IsValidVerlof && textBoxVerlofId.Text != "")
+            {
+                int dagId = int.Parse(textBoxVerlofId.Text);
+                using (var ctx = new DataContext())
+                {
+                    NietOpleidingsDagen updDag = ctx.NietOpleidingsDagen.SingleOrDefault(x => x.Id == dagId);
+                    if (dateTimePickerVerlof.Value.Date != updDag.Datum)
+                    {
+                        errorProviderOplInfoTab.SetError(dateTimePickerVerlof, "Om datum te veranderen voeg een nieuwe verlofdag toe en verwijder de oude indien nodig.");
+                    }
+                    else
+                    {
+                        updDag.Voormiddag = checkBoxVerlofVoormiddag.Checked;
+                        updDag.Namiddag = checkBoxVerlofNamiddag.Checked;
+                        ctx.SaveChanges();
+                    }
+                }
+                ClearAll();
+                LaadAlleListbox();
+            }
+            else if (textBoxVerlofId.Text == "")
+            {
+                errorProviderOplInfoTab.SetError(buttonVerlofUpd, "U probeert een nieuwe datum toe te voegen.");
+            }
+        }
+
+        private void ButtonVerlofDel_Click(object sender, EventArgs e)
+        {
+
+            int delVerlofId = int.Parse(textBoxVerlofId.Text);
+            using (var ctx = new DataContext())
+            {
+                var delVerlof = ctx.NietOpleidingsDagen.SingleOrDefault(d => d.Id == delVerlofId);
+                ctx.NietOpleidingsDagen.Remove(delVerlof);
+                ctx.SaveChanges();
+            }
+            ClearAll();
+            LaadAlleListbox();
+        }
+
+        private void ListBoxFeestdag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxFeestdag.SelectedIndex > 0)
+            {
+                NietOpleidingsDagen verlofDag = listBoxFeestdag.SelectedItem as NietOpleidingsDagen;
+                textBoxVerlofId.Text = verlofDag.Id.ToString();
+                dateTimePickerVerlof.Value = verlofDag.Datum.Date;
+                checkBoxVerlofVoormiddag.Checked = verlofDag.Voormiddag;
+                checkBoxVerlofNamiddag.Checked = verlofDag.Namiddag;
+            }
+            else
+            {
+                errorProviderOplInfoTab.SetError(buttonDeelnemerCreate, string.Empty);
+
+                textBoxDeelnId.Text = "";
+                textBoxDeelnNaam.Text = "";
+                dateTimePickerDeelnGeb.Value = DateTime.Today;
+                textBoxDeelnWoon.Text = "";
+                textBoxDeelnBadge.Text = "";
+            }
+        }
+
+        //validatie docent
+        private void DocentTab_Validatie()
+        {
+
+        }
+
+
     }
 }
-
-
 
 
 

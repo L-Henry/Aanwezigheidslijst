@@ -70,23 +70,23 @@
             this.textBoxDeelnNaam = new System.Windows.Forms.TextBox();
             this.textBoxDeelnId = new System.Windows.Forms.TextBox();
             this.tabFeest = new System.Windows.Forms.TabPage();
+            this.checkBoxVerlofNamiddag = new System.Windows.Forms.CheckBox();
+            this.checkBoxVerlofVoormiddag = new System.Windows.Forms.CheckBox();
+            this.dateTimePickerVerlof = new System.Windows.Forms.DateTimePicker();
             this.listBoxFeestdag = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonVerlofDel = new System.Windows.Forms.Button();
+            this.buttonVerlofUpd = new System.Windows.Forms.Button();
+            this.buttonVerlofAdd = new System.Windows.Forms.Button();
             this.labelVerlofNamiddag = new System.Windows.Forms.Label();
             this.labelVerlofVoormiddag = new System.Windows.Forms.Label();
             this.labelVerlofDatum = new System.Windows.Forms.Label();
             this.labelIdVerlof = new System.Windows.Forms.Label();
-            this.textBoxVerlofNam = new System.Windows.Forms.TextBox();
-            this.textBoxVerlofVoorm = new System.Windows.Forms.TextBox();
-            this.textBoxVerlofDatum = new System.Windows.Forms.TextBox();
             this.textBoxVerlofId = new System.Windows.Forms.TextBox();
             this.tabDocent = new System.Windows.Forms.TabPage();
             this.listBoxDocent = new System.Windows.Forms.ListBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.buttonDocentDel = new System.Windows.Forms.Button();
+            this.buttonDocentUpd = new System.Windows.Forms.Button();
+            this.buttonDocentAdd = new System.Windows.Forms.Button();
             this.labelDocentBedrijf = new System.Windows.Forms.Label();
             this.labelDocentNaam = new System.Windows.Forms.Label();
             this.labelDocentId = new System.Windows.Forms.Label();
@@ -507,17 +507,17 @@
             // 
             // tabFeest
             // 
+            this.tabFeest.Controls.Add(this.checkBoxVerlofNamiddag);
+            this.tabFeest.Controls.Add(this.checkBoxVerlofVoormiddag);
+            this.tabFeest.Controls.Add(this.dateTimePickerVerlof);
             this.tabFeest.Controls.Add(this.listBoxFeestdag);
-            this.tabFeest.Controls.Add(this.button4);
-            this.tabFeest.Controls.Add(this.button5);
-            this.tabFeest.Controls.Add(this.button6);
+            this.tabFeest.Controls.Add(this.buttonVerlofDel);
+            this.tabFeest.Controls.Add(this.buttonVerlofUpd);
+            this.tabFeest.Controls.Add(this.buttonVerlofAdd);
             this.tabFeest.Controls.Add(this.labelVerlofNamiddag);
             this.tabFeest.Controls.Add(this.labelVerlofVoormiddag);
             this.tabFeest.Controls.Add(this.labelVerlofDatum);
             this.tabFeest.Controls.Add(this.labelIdVerlof);
-            this.tabFeest.Controls.Add(this.textBoxVerlofNam);
-            this.tabFeest.Controls.Add(this.textBoxVerlofVoorm);
-            this.tabFeest.Controls.Add(this.textBoxVerlofDatum);
             this.tabFeest.Controls.Add(this.textBoxVerlofId);
             this.tabFeest.Location = new System.Drawing.Point(4, 29);
             this.tabFeest.Name = "tabFeest";
@@ -527,6 +527,36 @@
             this.tabFeest.Text = "Feestdagen";
             this.tabFeest.UseVisualStyleBackColor = true;
             // 
+            // checkBoxVerlofNamiddag
+            // 
+            this.checkBoxVerlofNamiddag.AutoSize = true;
+            this.checkBoxVerlofNamiddag.Location = new System.Drawing.Point(275, 164);
+            this.checkBoxVerlofNamiddag.Name = "checkBoxVerlofNamiddag";
+            this.checkBoxVerlofNamiddag.Size = new System.Drawing.Size(107, 24);
+            this.checkBoxVerlofNamiddag.TabIndex = 64;
+            this.checkBoxVerlofNamiddag.Text = "Namiddag";
+            this.checkBoxVerlofNamiddag.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxVerlofVoormiddag
+            // 
+            this.checkBoxVerlofVoormiddag.AutoSize = true;
+            this.checkBoxVerlofVoormiddag.Location = new System.Drawing.Point(275, 130);
+            this.checkBoxVerlofVoormiddag.Name = "checkBoxVerlofVoormiddag";
+            this.checkBoxVerlofVoormiddag.Size = new System.Drawing.Size(121, 24);
+            this.checkBoxVerlofVoormiddag.TabIndex = 63;
+            this.checkBoxVerlofVoormiddag.Text = "Voormiddag";
+            this.checkBoxVerlofVoormiddag.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePickerVerlof
+            // 
+            this.dateTimePickerVerlof.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerVerlof.Location = new System.Drawing.Point(275, 92);
+            this.dateTimePickerVerlof.MinDate = new System.DateTime(2019, 7, 17, 0, 0, 0, 0);
+            this.dateTimePickerVerlof.Name = "dateTimePickerVerlof";
+            this.dateTimePickerVerlof.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerVerlof.TabIndex = 62;
+            this.dateTimePickerVerlof.Value = new System.DateTime(2019, 7, 17, 10, 40, 31, 0);
+            // 
             // listBoxFeestdag
             // 
             this.listBoxFeestdag.FormattingEnabled = true;
@@ -535,33 +565,37 @@
             this.listBoxFeestdag.Name = "listBoxFeestdag";
             this.listBoxFeestdag.Size = new System.Drawing.Size(358, 624);
             this.listBoxFeestdag.TabIndex = 61;
+            this.listBoxFeestdag.SelectedIndexChanged += new System.EventHandler(this.ListBoxFeestdag_SelectedIndexChanged);
             // 
-            // button4
+            // buttonVerlofDel
             // 
-            this.button4.Location = new System.Drawing.Point(374, 285);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 50);
-            this.button4.TabIndex = 59;
-            this.button4.Text = "Verwijder";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonVerlofDel.Location = new System.Drawing.Point(374, 285);
+            this.buttonVerlofDel.Name = "buttonVerlofDel";
+            this.buttonVerlofDel.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofDel.TabIndex = 59;
+            this.buttonVerlofDel.Text = "Verwijder";
+            this.buttonVerlofDel.UseVisualStyleBackColor = true;
+            this.buttonVerlofDel.Click += new System.EventHandler(this.ButtonVerlofDel_Click);
             // 
-            // button5
+            // buttonVerlofUpd
             // 
-            this.button5.Location = new System.Drawing.Point(204, 285);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(122, 50);
-            this.button5.TabIndex = 58;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonVerlofUpd.Location = new System.Drawing.Point(204, 285);
+            this.buttonVerlofUpd.Name = "buttonVerlofUpd";
+            this.buttonVerlofUpd.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofUpd.TabIndex = 58;
+            this.buttonVerlofUpd.Text = "Update";
+            this.buttonVerlofUpd.UseVisualStyleBackColor = true;
+            this.buttonVerlofUpd.Click += new System.EventHandler(this.ButtonVerlofUpd_Click);
             // 
-            // button6
+            // buttonVerlofAdd
             // 
-            this.button6.Location = new System.Drawing.Point(35, 285);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(122, 50);
-            this.button6.TabIndex = 57;
-            this.button6.Text = "Voeg toe";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonVerlofAdd.Location = new System.Drawing.Point(35, 285);
+            this.buttonVerlofAdd.Name = "buttonVerlofAdd";
+            this.buttonVerlofAdd.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofAdd.TabIndex = 57;
+            this.buttonVerlofAdd.Text = "Voeg toe";
+            this.buttonVerlofAdd.UseVisualStyleBackColor = true;
+            this.buttonVerlofAdd.Click += new System.EventHandler(this.ButtonVerlofAdd_Click);
             // 
             // labelVerlofNamiddag
             // 
@@ -599,27 +633,6 @@
             this.labelIdVerlof.TabIndex = 52;
             this.labelIdVerlof.Text = "Id van verlofdag";
             // 
-            // textBoxVerlofNam
-            // 
-            this.textBoxVerlofNam.Location = new System.Drawing.Point(275, 162);
-            this.textBoxVerlofNam.Name = "textBoxVerlofNam";
-            this.textBoxVerlofNam.Size = new System.Drawing.Size(221, 26);
-            this.textBoxVerlofNam.TabIndex = 45;
-            // 
-            // textBoxVerlofVoorm
-            // 
-            this.textBoxVerlofVoorm.Location = new System.Drawing.Point(275, 128);
-            this.textBoxVerlofVoorm.Name = "textBoxVerlofVoorm";
-            this.textBoxVerlofVoorm.Size = new System.Drawing.Size(221, 26);
-            this.textBoxVerlofVoorm.TabIndex = 44;
-            // 
-            // textBoxVerlofDatum
-            // 
-            this.textBoxVerlofDatum.Location = new System.Drawing.Point(275, 92);
-            this.textBoxVerlofDatum.Name = "textBoxVerlofDatum";
-            this.textBoxVerlofDatum.Size = new System.Drawing.Size(221, 26);
-            this.textBoxVerlofDatum.TabIndex = 43;
-            // 
             // textBoxVerlofId
             // 
             this.textBoxVerlofId.Location = new System.Drawing.Point(275, 58);
@@ -630,9 +643,9 @@
             // tabDocent
             // 
             this.tabDocent.Controls.Add(this.listBoxDocent);
-            this.tabDocent.Controls.Add(this.button7);
-            this.tabDocent.Controls.Add(this.button8);
-            this.tabDocent.Controls.Add(this.button9);
+            this.tabDocent.Controls.Add(this.buttonDocentDel);
+            this.tabDocent.Controls.Add(this.buttonDocentUpd);
+            this.tabDocent.Controls.Add(this.buttonDocentAdd);
             this.tabDocent.Controls.Add(this.labelDocentBedrijf);
             this.tabDocent.Controls.Add(this.labelDocentNaam);
             this.tabDocent.Controls.Add(this.labelDocentId);
@@ -656,32 +669,32 @@
             this.listBoxDocent.Size = new System.Drawing.Size(358, 624);
             this.listBoxDocent.TabIndex = 61;
             // 
-            // button7
+            // buttonDocentDel
             // 
-            this.button7.Location = new System.Drawing.Point(374, 244);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(122, 50);
-            this.button7.TabIndex = 57;
-            this.button7.Text = "Verwijder";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonDocentDel.Location = new System.Drawing.Point(374, 244);
+            this.buttonDocentDel.Name = "buttonDocentDel";
+            this.buttonDocentDel.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentDel.TabIndex = 57;
+            this.buttonDocentDel.Text = "Verwijder";
+            this.buttonDocentDel.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // buttonDocentUpd
             // 
-            this.button8.Location = new System.Drawing.Point(204, 244);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(122, 50);
-            this.button8.TabIndex = 56;
-            this.button8.Text = "Update";
-            this.button8.UseVisualStyleBackColor = true;
+            this.buttonDocentUpd.Location = new System.Drawing.Point(204, 244);
+            this.buttonDocentUpd.Name = "buttonDocentUpd";
+            this.buttonDocentUpd.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentUpd.TabIndex = 56;
+            this.buttonDocentUpd.Text = "Update";
+            this.buttonDocentUpd.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // buttonDocentAdd
             // 
-            this.button9.Location = new System.Drawing.Point(35, 244);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(122, 50);
-            this.button9.TabIndex = 55;
-            this.button9.Text = "Voeg toe";
-            this.button9.UseVisualStyleBackColor = true;
+            this.buttonDocentAdd.Location = new System.Drawing.Point(35, 244);
+            this.buttonDocentAdd.Name = "buttonDocentAdd";
+            this.buttonDocentAdd.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentAdd.TabIndex = 55;
+            this.buttonDocentAdd.Text = "Voeg toe";
+            this.buttonDocentAdd.UseVisualStyleBackColor = true;
             // 
             // labelDocentBedrijf
             // 
@@ -917,9 +930,6 @@
         private System.Windows.Forms.Label labelVerlofVoormiddag;
         private System.Windows.Forms.Label labelVerlofDatum;
         private System.Windows.Forms.Label labelIdVerlof;
-        private System.Windows.Forms.TextBox textBoxVerlofNam;
-        private System.Windows.Forms.TextBox textBoxVerlofVoorm;
-        private System.Windows.Forms.TextBox textBoxVerlofDatum;
         private System.Windows.Forms.TextBox textBoxVerlofId;
         private System.Windows.Forms.Label labelDocentBedrijf;
         private System.Windows.Forms.Label labelDocentNaam;
@@ -941,12 +951,12 @@
         private System.Windows.Forms.Button buttonDeelnemerDel;
         private System.Windows.Forms.Button buttonDeelnemerUpd;
         private System.Windows.Forms.Button buttonDeelnemerCreate;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button buttonVerlofDel;
+        private System.Windows.Forms.Button buttonVerlofUpd;
+        private System.Windows.Forms.Button buttonVerlofAdd;
+        private System.Windows.Forms.Button buttonDocentDel;
+        private System.Windows.Forms.Button buttonDocentUpd;
+        private System.Windows.Forms.Button buttonDocentAdd;
         private System.Windows.Forms.ListBox listBoxDeelnemers;
         private System.Windows.Forms.ListBox listBoxFeestdag;
         private System.Windows.Forms.ListBox listBoxDocent;
@@ -955,6 +965,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerOplStart;
         private System.Windows.Forms.ErrorProvider errorProviderOplInfoTab;
         private System.Windows.Forms.DateTimePicker dateTimePickerDeelnGeb;
+        private System.Windows.Forms.DateTimePicker dateTimePickerVerlof;
+        private System.Windows.Forms.CheckBox checkBoxVerlofNamiddag;
+        private System.Windows.Forms.CheckBox checkBoxVerlofVoormiddag;
     }
 }
 
