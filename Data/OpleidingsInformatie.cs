@@ -18,5 +18,12 @@ namespace Data
         public int Opleidngscode { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
+
+
+        public override string ToString()
+        {
+            return Opleiding + " (" + Opleidngscode + ")";
+        }
+
     }
 }

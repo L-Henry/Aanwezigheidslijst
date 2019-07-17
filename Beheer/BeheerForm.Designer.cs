@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabOpl = new System.Windows.Forms.TabPage();
+            this.dateTimePickerOplEind = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerOplStart = new System.Windows.Forms.DateTimePicker();
             this.buttonOplDel = new System.Windows.Forms.Button();
             this.buttonOplUpd = new System.Windows.Forms.Button();
             this.buttonOplCreate = new System.Windows.Forms.Button();
@@ -43,17 +46,16 @@
             this.labelOplNaam = new System.Windows.Forms.Label();
             this.labelOplInstelling = new System.Windows.Forms.Label();
             this.labelIdOpleiding = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBoxIdOpleiding = new System.Windows.Forms.TextBox();
+            this.textBoxOplCode = new System.Windows.Forms.TextBox();
+            this.textBoxOplOE = new System.Windows.Forms.TextBox();
+            this.textBoxOplRef = new System.Windows.Forms.TextBox();
+            this.textBoxOplPlaats = new System.Windows.Forms.TextBox();
+            this.textBoxOplContact = new System.Windows.Forms.TextBox();
+            this.textBoxOpl = new System.Windows.Forms.TextBox();
+            this.textBoxOplInstelling = new System.Windows.Forms.TextBox();
+            this.textBoxOplId = new System.Windows.Forms.TextBox();
             this.tabDeelnemers = new System.Windows.Forms.TabPage();
+            this.dateTimePickerDeelnGeb = new System.Windows.Forms.DateTimePicker();
             this.listBoxDeelnemers = new System.Windows.Forms.ListBox();
             this.buttonDeelnemerDel = new System.Windows.Forms.Button();
             this.buttonDeelnemerUpd = new System.Windows.Forms.Button();
@@ -63,49 +65,47 @@
             this.labelDeelnemerGeboortedatum = new System.Windows.Forms.Label();
             this.labelDeelnemerNaam = new System.Windows.Forms.Label();
             this.labelIdDeelnemer = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBoxDeelnBadge = new System.Windows.Forms.TextBox();
+            this.textBoxDeelnWoon = new System.Windows.Forms.TextBox();
+            this.textBoxDeelnNaam = new System.Windows.Forms.TextBox();
+            this.textBoxDeelnId = new System.Windows.Forms.TextBox();
             this.tabFeest = new System.Windows.Forms.TabPage();
+            this.checkBoxVerlofNamiddag = new System.Windows.Forms.CheckBox();
+            this.checkBoxVerlofVoormiddag = new System.Windows.Forms.CheckBox();
+            this.dateTimePickerVerlof = new System.Windows.Forms.DateTimePicker();
             this.listBoxFeestdag = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.labelVerlofOpleidingsId = new System.Windows.Forms.Label();
+            this.buttonVerlofDel = new System.Windows.Forms.Button();
+            this.buttonVerlofUpd = new System.Windows.Forms.Button();
+            this.buttonVerlofAdd = new System.Windows.Forms.Button();
             this.labelVerlofNamiddag = new System.Windows.Forms.Label();
             this.labelVerlofVoormiddag = new System.Windows.Forms.Label();
             this.labelVerlofDatum = new System.Windows.Forms.Label();
             this.labelIdVerlof = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.textBoxVerlofId = new System.Windows.Forms.TextBox();
             this.tabDocent = new System.Windows.Forms.TabPage();
             this.listBoxDocent = new System.Windows.Forms.ListBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.buttonDocentDel = new System.Windows.Forms.Button();
+            this.buttonDocentUpd = new System.Windows.Forms.Button();
+            this.buttonDocentAdd = new System.Windows.Forms.Button();
             this.labelDocentBedrijf = new System.Windows.Forms.Label();
             this.labelDocentNaam = new System.Windows.Forms.Label();
             this.labelDocentId = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
-            this.textBox38 = new System.Windows.Forms.TextBox();
-            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.textBoxDocentBedrijf = new System.Windows.Forms.TextBox();
+            this.textBoxDocentNaam = new System.Windows.Forms.TextBox();
+            this.textBoxDocentId = new System.Windows.Forms.TextBox();
             this.tabTijd = new System.Windows.Forms.TabPage();
             this.listBoxDeelnemersTijd = new System.Windows.Forms.ListBox();
             this.labelTijdDeelnemerId = new System.Windows.Forms.Label();
             this.labelTijdOpleidingId = new System.Windows.Forms.Label();
             this.labelTijdDateTime = new System.Windows.Forms.Label();
             this.labelTijdId = new System.Windows.Forms.Label();
-            this.textBox46 = new System.Windows.Forms.TextBox();
-            this.textBox47 = new System.Windows.Forms.TextBox();
-            this.textBox48 = new System.Windows.Forms.TextBox();
-            this.textBox49 = new System.Windows.Forms.TextBox();
+            this.textBoxTijdDeelnId = new System.Windows.Forms.TextBox();
+            this.textBoxTijdOplId = new System.Windows.Forms.TextBox();
+            this.textBoxTijdStip = new System.Windows.Forms.TextBox();
+            this.textBoxTijdId = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxOpleiding = new System.Windows.Forms.ToolStripComboBox();
+            this.errorProviderOplInfoTab = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabOpl.SuspendLayout();
             this.tabDeelnemers.SuspendLayout();
@@ -113,6 +113,7 @@
             this.tabDocent.SuspendLayout();
             this.tabTijd.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderOplInfoTab)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -127,10 +128,11 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1054, 733);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tabOpl
             // 
+            this.tabOpl.Controls.Add(this.dateTimePickerOplEind);
+            this.tabOpl.Controls.Add(this.dateTimePickerOplStart);
             this.tabOpl.Controls.Add(this.buttonOplDel);
             this.tabOpl.Controls.Add(this.buttonOplUpd);
             this.tabOpl.Controls.Add(this.buttonOplCreate);
@@ -144,16 +146,14 @@
             this.tabOpl.Controls.Add(this.labelOplNaam);
             this.tabOpl.Controls.Add(this.labelOplInstelling);
             this.tabOpl.Controls.Add(this.labelIdOpleiding);
-            this.tabOpl.Controls.Add(this.textBox10);
-            this.tabOpl.Controls.Add(this.textBox9);
-            this.tabOpl.Controls.Add(this.textBox8);
-            this.tabOpl.Controls.Add(this.textBox7);
-            this.tabOpl.Controls.Add(this.textBox6);
-            this.tabOpl.Controls.Add(this.textBox5);
-            this.tabOpl.Controls.Add(this.textBox4);
-            this.tabOpl.Controls.Add(this.textBox3);
-            this.tabOpl.Controls.Add(this.textBox2);
-            this.tabOpl.Controls.Add(this.textBoxIdOpleiding);
+            this.tabOpl.Controls.Add(this.textBoxOplCode);
+            this.tabOpl.Controls.Add(this.textBoxOplOE);
+            this.tabOpl.Controls.Add(this.textBoxOplRef);
+            this.tabOpl.Controls.Add(this.textBoxOplPlaats);
+            this.tabOpl.Controls.Add(this.textBoxOplContact);
+            this.tabOpl.Controls.Add(this.textBoxOpl);
+            this.tabOpl.Controls.Add(this.textBoxOplInstelling);
+            this.tabOpl.Controls.Add(this.textBoxOplId);
             this.tabOpl.Location = new System.Drawing.Point(4, 29);
             this.tabOpl.Name = "tabOpl";
             this.tabOpl.Padding = new System.Windows.Forms.Padding(3);
@@ -161,6 +161,24 @@
             this.tabOpl.TabIndex = 0;
             this.tabOpl.Text = "Opleiding info";
             this.tabOpl.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePickerOplEind
+            // 
+            this.dateTimePickerOplEind.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerOplEind.Location = new System.Drawing.Point(275, 366);
+            this.dateTimePickerOplEind.MinDate = new System.DateTime(2019, 7, 12, 0, 0, 0, 0);
+            this.dateTimePickerOplEind.Name = "dateTimePickerOplEind";
+            this.dateTimePickerOplEind.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerOplEind.TabIndex = 24;
+            // 
+            // dateTimePickerOplStart
+            // 
+            this.dateTimePickerOplStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerOplStart.Location = new System.Drawing.Point(275, 332);
+            this.dateTimePickerOplStart.MinDate = new System.DateTime(2019, 7, 12, 0, 0, 0, 0);
+            this.dateTimePickerOplStart.Name = "dateTimePickerOplStart";
+            this.dateTimePickerOplStart.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerOplStart.TabIndex = 23;
             // 
             // buttonOplDel
             // 
@@ -170,6 +188,7 @@
             this.buttonOplDel.TabIndex = 22;
             this.buttonOplDel.Text = "Verwijder";
             this.buttonOplDel.UseVisualStyleBackColor = true;
+            this.buttonOplDel.Click += new System.EventHandler(this.ButtonOplDel_Click);
             // 
             // buttonOplUpd
             // 
@@ -179,6 +198,7 @@
             this.buttonOplUpd.TabIndex = 21;
             this.buttonOplUpd.Text = "Update";
             this.buttonOplUpd.UseVisualStyleBackColor = true;
+            this.buttonOplUpd.Click += new System.EventHandler(this.ButtonOplUpd_Click);
             // 
             // buttonOplCreate
             // 
@@ -188,6 +208,7 @@
             this.buttonOplCreate.TabIndex = 20;
             this.buttonOplCreate.Text = "Creeër nieuwe opleiding";
             this.buttonOplCreate.UseVisualStyleBackColor = true;
+            this.buttonOplCreate.Click += new System.EventHandler(this.ButtonOplCreate_Click);
             // 
             // labelEindDatum
             // 
@@ -279,79 +300,66 @@
             this.labelIdOpleiding.TabIndex = 10;
             this.labelIdOpleiding.Text = "Id van opleiding";
             // 
-            // textBox10
+            // textBoxOplCode
             // 
-            this.textBox10.Location = new System.Drawing.Point(275, 366);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(221, 26);
-            this.textBox10.TabIndex = 9;
+            this.textBoxOplCode.Location = new System.Drawing.Point(275, 296);
+            this.textBoxOplCode.Name = "textBoxOplCode";
+            this.textBoxOplCode.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplCode.TabIndex = 7;
             // 
-            // textBox9
+            // textBoxOplOE
             // 
-            this.textBox9.Location = new System.Drawing.Point(275, 332);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(221, 26);
-            this.textBox9.TabIndex = 8;
+            this.textBoxOplOE.Location = new System.Drawing.Point(275, 262);
+            this.textBoxOplOE.Name = "textBoxOplOE";
+            this.textBoxOplOE.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplOE.TabIndex = 6;
             // 
-            // textBox8
+            // textBoxOplRef
             // 
-            this.textBox8.Location = new System.Drawing.Point(275, 296);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(221, 26);
-            this.textBox8.TabIndex = 7;
+            this.textBoxOplRef.Location = new System.Drawing.Point(275, 228);
+            this.textBoxOplRef.Name = "textBoxOplRef";
+            this.textBoxOplRef.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplRef.TabIndex = 5;
             // 
-            // textBox7
+            // textBoxOplPlaats
             // 
-            this.textBox7.Location = new System.Drawing.Point(275, 262);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(221, 26);
-            this.textBox7.TabIndex = 6;
+            this.textBoxOplPlaats.Location = new System.Drawing.Point(275, 194);
+            this.textBoxOplPlaats.Name = "textBoxOplPlaats";
+            this.textBoxOplPlaats.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplPlaats.TabIndex = 4;
             // 
-            // textBox6
+            // textBoxOplContact
             // 
-            this.textBox6.Location = new System.Drawing.Point(275, 228);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(221, 26);
-            this.textBox6.TabIndex = 5;
+            this.textBoxOplContact.Location = new System.Drawing.Point(275, 160);
+            this.textBoxOplContact.Name = "textBoxOplContact";
+            this.textBoxOplContact.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplContact.TabIndex = 3;
             // 
-            // textBox5
+            // textBoxOpl
             // 
-            this.textBox5.Location = new System.Drawing.Point(275, 194);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(221, 26);
-            this.textBox5.TabIndex = 4;
+            this.textBoxOpl.Location = new System.Drawing.Point(275, 126);
+            this.textBoxOpl.Name = "textBoxOpl";
+            this.textBoxOpl.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOpl.TabIndex = 2;
             // 
-            // textBox4
+            // textBoxOplInstelling
             // 
-            this.textBox4.Location = new System.Drawing.Point(275, 160);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(221, 26);
-            this.textBox4.TabIndex = 3;
+            this.textBoxOplInstelling.Location = new System.Drawing.Point(275, 92);
+            this.textBoxOplInstelling.Name = "textBoxOplInstelling";
+            this.textBoxOplInstelling.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplInstelling.TabIndex = 1;
             // 
-            // textBox3
+            // textBoxOplId
             // 
-            this.textBox3.Location = new System.Drawing.Point(275, 126);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(221, 26);
-            this.textBox3.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(275, 92);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(221, 26);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBoxIdOpleiding
-            // 
-            this.textBoxIdOpleiding.Location = new System.Drawing.Point(275, 58);
-            this.textBoxIdOpleiding.Name = "textBoxIdOpleiding";
-            this.textBoxIdOpleiding.ReadOnly = true;
-            this.textBoxIdOpleiding.Size = new System.Drawing.Size(221, 26);
-            this.textBoxIdOpleiding.TabIndex = 0;
+            this.textBoxOplId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxOplId.Name = "textBoxOplId";
+            this.textBoxOplId.ReadOnly = true;
+            this.textBoxOplId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxOplId.TabIndex = 0;
             // 
             // tabDeelnemers
             // 
+            this.tabDeelnemers.Controls.Add(this.dateTimePickerDeelnGeb);
             this.tabDeelnemers.Controls.Add(this.listBoxDeelnemers);
             this.tabDeelnemers.Controls.Add(this.buttonDeelnemerDel);
             this.tabDeelnemers.Controls.Add(this.buttonDeelnemerUpd);
@@ -361,11 +369,10 @@
             this.tabDeelnemers.Controls.Add(this.labelDeelnemerGeboortedatum);
             this.tabDeelnemers.Controls.Add(this.labelDeelnemerNaam);
             this.tabDeelnemers.Controls.Add(this.labelIdDeelnemer);
-            this.tabDeelnemers.Controls.Add(this.textBox15);
-            this.tabDeelnemers.Controls.Add(this.textBox16);
-            this.tabDeelnemers.Controls.Add(this.textBox17);
-            this.tabDeelnemers.Controls.Add(this.textBox18);
-            this.tabDeelnemers.Controls.Add(this.textBox19);
+            this.tabDeelnemers.Controls.Add(this.textBoxDeelnBadge);
+            this.tabDeelnemers.Controls.Add(this.textBoxDeelnWoon);
+            this.tabDeelnemers.Controls.Add(this.textBoxDeelnNaam);
+            this.tabDeelnemers.Controls.Add(this.textBoxDeelnId);
             this.tabDeelnemers.Location = new System.Drawing.Point(4, 29);
             this.tabDeelnemers.Name = "tabDeelnemers";
             this.tabDeelnemers.Padding = new System.Windows.Forms.Padding(3);
@@ -374,14 +381,26 @@
             this.tabDeelnemers.Text = "Deelnemers";
             this.tabDeelnemers.UseVisualStyleBackColor = true;
             // 
+            // dateTimePickerDeelnGeb
+            // 
+            this.dateTimePickerDeelnGeb.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDeelnGeb.Location = new System.Drawing.Point(275, 126);
+            this.dateTimePickerDeelnGeb.Name = "dateTimePickerDeelnGeb";
+            this.dateTimePickerDeelnGeb.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerDeelnGeb.TabIndex = 61;
+            this.dateTimePickerDeelnGeb.Value = new System.DateTime(2019, 7, 16, 11, 30, 7, 0);
+            // 
             // listBoxDeelnemers
             // 
             this.listBoxDeelnemers.FormattingEnabled = true;
             this.listBoxDeelnemers.ItemHeight = 20;
+            this.listBoxDeelnemers.Items.AddRange(new object[] {
+            "Nieuwe deelnemer aanmaken"});
             this.listBoxDeelnemers.Location = new System.Drawing.Point(645, 43);
             this.listBoxDeelnemers.Name = "listBoxDeelnemers";
             this.listBoxDeelnemers.Size = new System.Drawing.Size(358, 624);
             this.listBoxDeelnemers.TabIndex = 60;
+            this.listBoxDeelnemers.SelectedIndexChanged += new System.EventHandler(this.ListBoxDeelnemers_SelectedIndexChanged);
             // 
             // buttonDeelnemerDel
             // 
@@ -391,6 +410,7 @@
             this.buttonDeelnemerDel.TabIndex = 59;
             this.buttonDeelnemerDel.Text = "Verwijder";
             this.buttonDeelnemerDel.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerDel.Click += new System.EventHandler(this.ButtonDeelnemerDel_Click);
             // 
             // buttonDeelnemerUpd
             // 
@@ -400,6 +420,7 @@
             this.buttonDeelnemerUpd.TabIndex = 58;
             this.buttonDeelnemerUpd.Text = "Update";
             this.buttonDeelnemerUpd.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerUpd.Click += new System.EventHandler(this.ButtonDeelnemerUpd_Click);
             // 
             // buttonDeelnemerCreate
             // 
@@ -409,6 +430,7 @@
             this.buttonDeelnemerCreate.TabIndex = 57;
             this.buttonDeelnemerCreate.Text = "Voeg toe";
             this.buttonDeelnemerCreate.UseVisualStyleBackColor = true;
+            this.buttonDeelnemerCreate.Click += new System.EventHandler(this.ButtonDeelnemerCreate_Click);
             // 
             // labelDeelnemerBadgeNummer
             // 
@@ -455,57 +477,48 @@
             this.labelIdDeelnemer.TabIndex = 52;
             this.labelIdDeelnemer.Text = "Id van deelnemer";
             // 
-            // textBox15
+            // textBoxDeelnBadge
             // 
-            this.textBox15.Location = new System.Drawing.Point(275, 194);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(221, 26);
-            this.textBox15.TabIndex = 46;
+            this.textBoxDeelnBadge.Location = new System.Drawing.Point(275, 194);
+            this.textBoxDeelnBadge.Name = "textBoxDeelnBadge";
+            this.textBoxDeelnBadge.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDeelnBadge.TabIndex = 46;
             // 
-            // textBox16
+            // textBoxDeelnWoon
             // 
-            this.textBox16.Location = new System.Drawing.Point(275, 160);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(221, 26);
-            this.textBox16.TabIndex = 45;
+            this.textBoxDeelnWoon.Location = new System.Drawing.Point(275, 160);
+            this.textBoxDeelnWoon.Name = "textBoxDeelnWoon";
+            this.textBoxDeelnWoon.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDeelnWoon.TabIndex = 45;
             // 
-            // textBox17
+            // textBoxDeelnNaam
             // 
-            this.textBox17.Location = new System.Drawing.Point(275, 126);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(221, 26);
-            this.textBox17.TabIndex = 44;
+            this.textBoxDeelnNaam.Location = new System.Drawing.Point(275, 92);
+            this.textBoxDeelnNaam.Name = "textBoxDeelnNaam";
+            this.textBoxDeelnNaam.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDeelnNaam.TabIndex = 43;
             // 
-            // textBox18
+            // textBoxDeelnId
             // 
-            this.textBox18.Location = new System.Drawing.Point(275, 92);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(221, 26);
-            this.textBox18.TabIndex = 43;
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(275, 58);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(221, 26);
-            this.textBox19.TabIndex = 42;
+            this.textBoxDeelnId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxDeelnId.Name = "textBoxDeelnId";
+            this.textBoxDeelnId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDeelnId.TabIndex = 42;
             // 
             // tabFeest
             // 
+            this.tabFeest.Controls.Add(this.checkBoxVerlofNamiddag);
+            this.tabFeest.Controls.Add(this.checkBoxVerlofVoormiddag);
+            this.tabFeest.Controls.Add(this.dateTimePickerVerlof);
             this.tabFeest.Controls.Add(this.listBoxFeestdag);
-            this.tabFeest.Controls.Add(this.button4);
-            this.tabFeest.Controls.Add(this.button5);
-            this.tabFeest.Controls.Add(this.button6);
-            this.tabFeest.Controls.Add(this.labelVerlofOpleidingsId);
+            this.tabFeest.Controls.Add(this.buttonVerlofDel);
+            this.tabFeest.Controls.Add(this.buttonVerlofUpd);
+            this.tabFeest.Controls.Add(this.buttonVerlofAdd);
             this.tabFeest.Controls.Add(this.labelVerlofNamiddag);
             this.tabFeest.Controls.Add(this.labelVerlofVoormiddag);
             this.tabFeest.Controls.Add(this.labelVerlofDatum);
             this.tabFeest.Controls.Add(this.labelIdVerlof);
-            this.tabFeest.Controls.Add(this.textBox25);
-            this.tabFeest.Controls.Add(this.textBox26);
-            this.tabFeest.Controls.Add(this.textBox27);
-            this.tabFeest.Controls.Add(this.textBox28);
-            this.tabFeest.Controls.Add(this.textBox29);
+            this.tabFeest.Controls.Add(this.textBoxVerlofId);
             this.tabFeest.Location = new System.Drawing.Point(4, 29);
             this.tabFeest.Name = "tabFeest";
             this.tabFeest.Padding = new System.Windows.Forms.Padding(3);
@@ -513,6 +526,36 @@
             this.tabFeest.TabIndex = 2;
             this.tabFeest.Text = "Feestdagen";
             this.tabFeest.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxVerlofNamiddag
+            // 
+            this.checkBoxVerlofNamiddag.AutoSize = true;
+            this.checkBoxVerlofNamiddag.Location = new System.Drawing.Point(275, 164);
+            this.checkBoxVerlofNamiddag.Name = "checkBoxVerlofNamiddag";
+            this.checkBoxVerlofNamiddag.Size = new System.Drawing.Size(107, 24);
+            this.checkBoxVerlofNamiddag.TabIndex = 64;
+            this.checkBoxVerlofNamiddag.Text = "Namiddag";
+            this.checkBoxVerlofNamiddag.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxVerlofVoormiddag
+            // 
+            this.checkBoxVerlofVoormiddag.AutoSize = true;
+            this.checkBoxVerlofVoormiddag.Location = new System.Drawing.Point(275, 130);
+            this.checkBoxVerlofVoormiddag.Name = "checkBoxVerlofVoormiddag";
+            this.checkBoxVerlofVoormiddag.Size = new System.Drawing.Size(121, 24);
+            this.checkBoxVerlofVoormiddag.TabIndex = 63;
+            this.checkBoxVerlofVoormiddag.Text = "Voormiddag";
+            this.checkBoxVerlofVoormiddag.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePickerVerlof
+            // 
+            this.dateTimePickerVerlof.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerVerlof.Location = new System.Drawing.Point(275, 92);
+            this.dateTimePickerVerlof.MinDate = new System.DateTime(2019, 7, 17, 0, 0, 0, 0);
+            this.dateTimePickerVerlof.Name = "dateTimePickerVerlof";
+            this.dateTimePickerVerlof.Size = new System.Drawing.Size(221, 26);
+            this.dateTimePickerVerlof.TabIndex = 62;
+            this.dateTimePickerVerlof.Value = new System.DateTime(2019, 7, 17, 10, 40, 31, 0);
             // 
             // listBoxFeestdag
             // 
@@ -522,42 +565,37 @@
             this.listBoxFeestdag.Name = "listBoxFeestdag";
             this.listBoxFeestdag.Size = new System.Drawing.Size(358, 624);
             this.listBoxFeestdag.TabIndex = 61;
+            this.listBoxFeestdag.SelectedIndexChanged += new System.EventHandler(this.ListBoxFeestdag_SelectedIndexChanged);
             // 
-            // button4
+            // buttonVerlofDel
             // 
-            this.button4.Location = new System.Drawing.Point(374, 285);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 50);
-            this.button4.TabIndex = 59;
-            this.button4.Text = "Verwijder";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonVerlofDel.Location = new System.Drawing.Point(374, 285);
+            this.buttonVerlofDel.Name = "buttonVerlofDel";
+            this.buttonVerlofDel.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofDel.TabIndex = 59;
+            this.buttonVerlofDel.Text = "Verwijder";
+            this.buttonVerlofDel.UseVisualStyleBackColor = true;
+            this.buttonVerlofDel.Click += new System.EventHandler(this.ButtonVerlofDel_Click);
             // 
-            // button5
+            // buttonVerlofUpd
             // 
-            this.button5.Location = new System.Drawing.Point(204, 285);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(122, 50);
-            this.button5.TabIndex = 58;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonVerlofUpd.Location = new System.Drawing.Point(204, 285);
+            this.buttonVerlofUpd.Name = "buttonVerlofUpd";
+            this.buttonVerlofUpd.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofUpd.TabIndex = 58;
+            this.buttonVerlofUpd.Text = "Update";
+            this.buttonVerlofUpd.UseVisualStyleBackColor = true;
+            this.buttonVerlofUpd.Click += new System.EventHandler(this.ButtonVerlofUpd_Click);
             // 
-            // button6
+            // buttonVerlofAdd
             // 
-            this.button6.Location = new System.Drawing.Point(35, 285);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(122, 50);
-            this.button6.TabIndex = 57;
-            this.button6.Text = "Voeg toe";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // labelVerlofOpleidingsId
-            // 
-            this.labelVerlofOpleidingsId.AutoSize = true;
-            this.labelVerlofOpleidingsId.Location = new System.Drawing.Point(31, 202);
-            this.labelVerlofOpleidingsId.Name = "labelVerlofOpleidingsId";
-            this.labelVerlofOpleidingsId.Size = new System.Drawing.Size(93, 20);
-            this.labelVerlofOpleidingsId.TabIndex = 56;
-            this.labelVerlofOpleidingsId.Text = "Opleiding Id";
+            this.buttonVerlofAdd.Location = new System.Drawing.Point(35, 285);
+            this.buttonVerlofAdd.Name = "buttonVerlofAdd";
+            this.buttonVerlofAdd.Size = new System.Drawing.Size(122, 50);
+            this.buttonVerlofAdd.TabIndex = 57;
+            this.buttonVerlofAdd.Text = "Voeg toe";
+            this.buttonVerlofAdd.UseVisualStyleBackColor = true;
+            this.buttonVerlofAdd.Click += new System.EventHandler(this.ButtonVerlofAdd_Click);
             // 
             // labelVerlofNamiddag
             // 
@@ -595,53 +633,25 @@
             this.labelIdVerlof.TabIndex = 52;
             this.labelIdVerlof.Text = "Id van verlofdag";
             // 
-            // textBox25
+            // textBoxVerlofId
             // 
-            this.textBox25.Location = new System.Drawing.Point(275, 196);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(221, 26);
-            this.textBox25.TabIndex = 46;
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new System.Drawing.Point(275, 162);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(221, 26);
-            this.textBox26.TabIndex = 45;
-            // 
-            // textBox27
-            // 
-            this.textBox27.Location = new System.Drawing.Point(275, 128);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(221, 26);
-            this.textBox27.TabIndex = 44;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Location = new System.Drawing.Point(275, 92);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(221, 26);
-            this.textBox28.TabIndex = 43;
-            // 
-            // textBox29
-            // 
-            this.textBox29.Location = new System.Drawing.Point(275, 58);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(221, 26);
-            this.textBox29.TabIndex = 42;
+            this.textBoxVerlofId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxVerlofId.Name = "textBoxVerlofId";
+            this.textBoxVerlofId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxVerlofId.TabIndex = 42;
             // 
             // tabDocent
             // 
             this.tabDocent.Controls.Add(this.listBoxDocent);
-            this.tabDocent.Controls.Add(this.button7);
-            this.tabDocent.Controls.Add(this.button8);
-            this.tabDocent.Controls.Add(this.button9);
+            this.tabDocent.Controls.Add(this.buttonDocentDel);
+            this.tabDocent.Controls.Add(this.buttonDocentUpd);
+            this.tabDocent.Controls.Add(this.buttonDocentAdd);
             this.tabDocent.Controls.Add(this.labelDocentBedrijf);
             this.tabDocent.Controls.Add(this.labelDocentNaam);
             this.tabDocent.Controls.Add(this.labelDocentId);
-            this.tabDocent.Controls.Add(this.textBox37);
-            this.tabDocent.Controls.Add(this.textBox38);
-            this.tabDocent.Controls.Add(this.textBox39);
+            this.tabDocent.Controls.Add(this.textBoxDocentBedrijf);
+            this.tabDocent.Controls.Add(this.textBoxDocentNaam);
+            this.tabDocent.Controls.Add(this.textBoxDocentId);
             this.tabDocent.Location = new System.Drawing.Point(4, 29);
             this.tabDocent.Name = "tabDocent";
             this.tabDocent.Padding = new System.Windows.Forms.Padding(3);
@@ -658,33 +668,37 @@
             this.listBoxDocent.Name = "listBoxDocent";
             this.listBoxDocent.Size = new System.Drawing.Size(358, 624);
             this.listBoxDocent.TabIndex = 61;
+            this.listBoxDocent.SelectedIndexChanged += new System.EventHandler(this.ListBoxDocent_SelectedIndexChanged);
             // 
-            // button7
+            // buttonDocentDel
             // 
-            this.button7.Location = new System.Drawing.Point(374, 244);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(122, 50);
-            this.button7.TabIndex = 57;
-            this.button7.Text = "Verwijder";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonDocentDel.Location = new System.Drawing.Point(374, 244);
+            this.buttonDocentDel.Name = "buttonDocentDel";
+            this.buttonDocentDel.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentDel.TabIndex = 57;
+            this.buttonDocentDel.Text = "Verwijder";
+            this.buttonDocentDel.UseVisualStyleBackColor = true;
+            this.buttonDocentDel.Click += new System.EventHandler(this.ButtonDocentDel_Click);
             // 
-            // button8
+            // buttonDocentUpd
             // 
-            this.button8.Location = new System.Drawing.Point(204, 244);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(122, 50);
-            this.button8.TabIndex = 56;
-            this.button8.Text = "Update";
-            this.button8.UseVisualStyleBackColor = true;
+            this.buttonDocentUpd.Location = new System.Drawing.Point(204, 244);
+            this.buttonDocentUpd.Name = "buttonDocentUpd";
+            this.buttonDocentUpd.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentUpd.TabIndex = 56;
+            this.buttonDocentUpd.Text = "Update";
+            this.buttonDocentUpd.UseVisualStyleBackColor = true;
+            this.buttonDocentUpd.Click += new System.EventHandler(this.ButtonDocentUpd_Click);
             // 
-            // button9
+            // buttonDocentAdd
             // 
-            this.button9.Location = new System.Drawing.Point(35, 244);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(122, 50);
-            this.button9.TabIndex = 55;
-            this.button9.Text = "Voeg toe";
-            this.button9.UseVisualStyleBackColor = true;
+            this.buttonDocentAdd.Location = new System.Drawing.Point(35, 244);
+            this.buttonDocentAdd.Name = "buttonDocentAdd";
+            this.buttonDocentAdd.Size = new System.Drawing.Size(122, 50);
+            this.buttonDocentAdd.TabIndex = 55;
+            this.buttonDocentAdd.Text = "Voeg toe";
+            this.buttonDocentAdd.UseVisualStyleBackColor = true;
+            this.buttonDocentAdd.Click += new System.EventHandler(this.ButtonDocentAdd_Click);
             // 
             // labelDocentBedrijf
             // 
@@ -713,26 +727,26 @@
             this.labelDocentId.TabIndex = 52;
             this.labelDocentId.Text = "Id van docent";
             // 
-            // textBox37
+            // textBoxDocentBedrijf
             // 
-            this.textBox37.Location = new System.Drawing.Point(275, 128);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(221, 26);
-            this.textBox37.TabIndex = 44;
+            this.textBoxDocentBedrijf.Location = new System.Drawing.Point(275, 128);
+            this.textBoxDocentBedrijf.Name = "textBoxDocentBedrijf";
+            this.textBoxDocentBedrijf.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDocentBedrijf.TabIndex = 44;
             // 
-            // textBox38
+            // textBoxDocentNaam
             // 
-            this.textBox38.Location = new System.Drawing.Point(275, 94);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(221, 26);
-            this.textBox38.TabIndex = 43;
+            this.textBoxDocentNaam.Location = new System.Drawing.Point(275, 94);
+            this.textBoxDocentNaam.Name = "textBoxDocentNaam";
+            this.textBoxDocentNaam.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDocentNaam.TabIndex = 43;
             // 
-            // textBox39
+            // textBoxDocentId
             // 
-            this.textBox39.Location = new System.Drawing.Point(275, 58);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(221, 26);
-            this.textBox39.TabIndex = 42;
+            this.textBoxDocentId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxDocentId.Name = "textBoxDocentId";
+            this.textBoxDocentId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxDocentId.TabIndex = 42;
             // 
             // tabTijd
             // 
@@ -741,10 +755,10 @@
             this.tabTijd.Controls.Add(this.labelTijdOpleidingId);
             this.tabTijd.Controls.Add(this.labelTijdDateTime);
             this.tabTijd.Controls.Add(this.labelTijdId);
-            this.tabTijd.Controls.Add(this.textBox46);
-            this.tabTijd.Controls.Add(this.textBox47);
-            this.tabTijd.Controls.Add(this.textBox48);
-            this.tabTijd.Controls.Add(this.textBox49);
+            this.tabTijd.Controls.Add(this.textBoxTijdDeelnId);
+            this.tabTijd.Controls.Add(this.textBoxTijdOplId);
+            this.tabTijd.Controls.Add(this.textBoxTijdStip);
+            this.tabTijd.Controls.Add(this.textBoxTijdId);
             this.tabTijd.Location = new System.Drawing.Point(4, 29);
             this.tabTijd.Name = "tabTijd";
             this.tabTijd.Padding = new System.Windows.Forms.Padding(3);
@@ -798,33 +812,34 @@
             this.labelTijdId.TabIndex = 52;
             this.labelTijdId.Text = "Id van tijdsregistratie";
             // 
-            // textBox46
+            // textBoxTijdDeelnId
             // 
-            this.textBox46.Location = new System.Drawing.Point(275, 162);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.Size = new System.Drawing.Size(221, 26);
-            this.textBox46.TabIndex = 45;
+            this.textBoxTijdDeelnId.Location = new System.Drawing.Point(275, 162);
+            this.textBoxTijdDeelnId.Name = "textBoxTijdDeelnId";
+            this.textBoxTijdDeelnId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdDeelnId.TabIndex = 45;
             // 
-            // textBox47
+            // textBoxTijdOplId
             // 
-            this.textBox47.Location = new System.Drawing.Point(275, 128);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.Size = new System.Drawing.Size(221, 26);
-            this.textBox47.TabIndex = 44;
+            this.textBoxTijdOplId.Location = new System.Drawing.Point(275, 128);
+            this.textBoxTijdOplId.Name = "textBoxTijdOplId";
+            this.textBoxTijdOplId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdOplId.TabIndex = 44;
             // 
-            // textBox48
+            // textBoxTijdStip
             // 
-            this.textBox48.Location = new System.Drawing.Point(275, 94);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(221, 26);
-            this.textBox48.TabIndex = 43;
+            this.textBoxTijdStip.Location = new System.Drawing.Point(275, 94);
+            this.textBoxTijdStip.Name = "textBoxTijdStip";
+            this.textBoxTijdStip.ReadOnly = true;
+            this.textBoxTijdStip.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdStip.TabIndex = 43;
             // 
-            // textBox49
+            // textBoxTijdId
             // 
-            this.textBox49.Location = new System.Drawing.Point(275, 58);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new System.Drawing.Size(221, 26);
-            this.textBox49.TabIndex = 42;
+            this.textBoxTijdId.Location = new System.Drawing.Point(275, 58);
+            this.textBoxTijdId.Name = "textBoxTijdId";
+            this.textBoxTijdId.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdId.TabIndex = 42;
             // 
             // toolStrip1
             // 
@@ -839,8 +854,15 @@
             // 
             // comboBoxOpleiding
             // 
+            this.comboBoxOpleiding.Items.AddRange(new object[] {
+            "Nieuwe opleiding aanmaken"});
             this.comboBoxOpleiding.Name = "comboBoxOpleiding";
-            this.comboBoxOpleiding.Size = new System.Drawing.Size(121, 33);
+            this.comboBoxOpleiding.Size = new System.Drawing.Size(242, 33);
+            this.comboBoxOpleiding.SelectedIndexChanged += new System.EventHandler(this.ComboBoxOpleiding_SelectedIndexChanged);
+            // 
+            // errorProviderOplInfoTab
+            // 
+            this.errorProviderOplInfoTab.ContainerControl = this;
             // 
             // BeheerForm
             // 
@@ -865,6 +887,7 @@
             this.tabTijd.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderOplInfoTab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -890,66 +913,65 @@
         private System.Windows.Forms.Label labelOplNaam;
         private System.Windows.Forms.Label labelOplInstelling;
         private System.Windows.Forms.Label labelIdOpleiding;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBoxIdOpleiding;
+        private System.Windows.Forms.TextBox textBoxOplCode;
+        private System.Windows.Forms.TextBox textBoxOplOE;
+        private System.Windows.Forms.TextBox textBoxOplRef;
+        private System.Windows.Forms.TextBox textBoxOplPlaats;
+        private System.Windows.Forms.TextBox textBoxOplContact;
+        private System.Windows.Forms.TextBox textBoxOpl;
+        private System.Windows.Forms.TextBox textBoxOplInstelling;
+        private System.Windows.Forms.TextBox textBoxOplId;
         private System.Windows.Forms.Label labelDeelnemerBadgeNummer;
         private System.Windows.Forms.Label labelDeelnemerWoonplaats;
         private System.Windows.Forms.Label labelDeelnemerGeboortedatum;
         private System.Windows.Forms.Label labelDeelnemerNaam;
         private System.Windows.Forms.Label labelIdDeelnemer;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label labelVerlofOpleidingsId;
+        private System.Windows.Forms.TextBox textBoxDeelnBadge;
+        private System.Windows.Forms.TextBox textBoxDeelnWoon;
+        private System.Windows.Forms.TextBox textBoxDeelnNaam;
+        private System.Windows.Forms.TextBox textBoxDeelnId;
         private System.Windows.Forms.Label labelVerlofNamiddag;
         private System.Windows.Forms.Label labelVerlofVoormiddag;
         private System.Windows.Forms.Label labelVerlofDatum;
         private System.Windows.Forms.Label labelIdVerlof;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox textBoxVerlofId;
         private System.Windows.Forms.Label labelDocentBedrijf;
         private System.Windows.Forms.Label labelDocentNaam;
         private System.Windows.Forms.Label labelDocentId;
-        private System.Windows.Forms.TextBox textBox37;
-        private System.Windows.Forms.TextBox textBox38;
-        private System.Windows.Forms.TextBox textBox39;
+        private System.Windows.Forms.TextBox textBoxDocentBedrijf;
+        private System.Windows.Forms.TextBox textBoxDocentNaam;
+        private System.Windows.Forms.TextBox textBoxDocentId;
         private System.Windows.Forms.Label labelTijdDeelnemerId;
         private System.Windows.Forms.Label labelTijdOpleidingId;
         private System.Windows.Forms.Label labelTijdDateTime;
         private System.Windows.Forms.Label labelTijdId;
-        private System.Windows.Forms.TextBox textBox46;
-        private System.Windows.Forms.TextBox textBox47;
-        private System.Windows.Forms.TextBox textBox48;
-        private System.Windows.Forms.TextBox textBox49;
+        private System.Windows.Forms.TextBox textBoxTijdDeelnId;
+        private System.Windows.Forms.TextBox textBoxTijdOplId;
+        private System.Windows.Forms.TextBox textBoxTijdStip;
+        private System.Windows.Forms.TextBox textBoxTijdId;
         private System.Windows.Forms.Button buttonOplDel;
         private System.Windows.Forms.Button buttonOplUpd;
         private System.Windows.Forms.Button buttonOplCreate;
         private System.Windows.Forms.Button buttonDeelnemerDel;
         private System.Windows.Forms.Button buttonDeelnemerUpd;
         private System.Windows.Forms.Button buttonDeelnemerCreate;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button buttonVerlofDel;
+        private System.Windows.Forms.Button buttonVerlofUpd;
+        private System.Windows.Forms.Button buttonVerlofAdd;
+        private System.Windows.Forms.Button buttonDocentDel;
+        private System.Windows.Forms.Button buttonDocentUpd;
+        private System.Windows.Forms.Button buttonDocentAdd;
         private System.Windows.Forms.ListBox listBoxDeelnemers;
         private System.Windows.Forms.ListBox listBoxFeestdag;
         private System.Windows.Forms.ListBox listBoxDocent;
         private System.Windows.Forms.ListBox listBoxDeelnemersTijd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOplEind;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOplStart;
+        private System.Windows.Forms.ErrorProvider errorProviderOplInfoTab;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeelnGeb;
+        private System.Windows.Forms.DateTimePicker dateTimePickerVerlof;
+        private System.Windows.Forms.CheckBox checkBoxVerlofNamiddag;
+        private System.Windows.Forms.CheckBox checkBoxVerlofVoormiddag;
     }
 }
 
