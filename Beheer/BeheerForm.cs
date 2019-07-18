@@ -21,6 +21,7 @@ namespace Beheer
         List<Docenten> DocentLijst = new List<Docenten>();
         List<DeelnemersOpleidingen> DeelnOplLijst = new List<DeelnemersOpleidingen>();
         List<DocentenOpleiding> DocOplLijst = new List<DocentenOpleiding>();
+        List<Tijdsregistraties> TijdLijst = new List<Tijdsregistraties>();
 
         bool IsValidOpl = true;
         bool IsValidDeeln = true;
@@ -34,6 +35,9 @@ namespace Beheer
 
         private void BeheerForm_Load(object sender, EventArgs e)
         {
+            MinimumSize = Size;
+            MinimumSize = Size;
+
             using (var ctx = new DataContext())
             {
                 OplLijst = ctx.OpleidingsInformatie.ToList();
@@ -42,6 +46,7 @@ namespace Beheer
                 DocentLijst = ctx.Docenten.ToList();
                 DeelnOplLijst = ctx.DeelnemersOpleidingen.ToList();
                 DocOplLijst = ctx.DocentenOpleiding.ToList();
+                TijdLijst = ctx.Tijdsregistraties.ToList();
             }
             OplLijst = OplLijst.OrderBy(x => x.Opleiding).ToList();
             foreach (var opl in OplLijst)
@@ -98,10 +103,12 @@ namespace Beheer
                 DocentLijst = ctx.Docenten.ToList();
                 DeelnOplLijst = ctx.DeelnemersOpleidingen.ToList();
                 DocOplLijst = ctx.DocentenOpleiding.ToList();
+                TijdLijst = ctx.Tijdsregistraties.ToList();
             }
 
             //deelnemers listbox vullen
             listBoxDeelnemers.Items.Add("Nieuwe deelnemer toevoegen");
+            listBoxDeelnemersTijd.Items.Add("Allemaal");
             var deelLijst = (from d in DeelnLijst
                              join deelOpl in DeelnOplLijst on d.Id equals deelOpl.Deelnemer.Id
                              //join o in OplLijst on deelOpl.OpleidingsInformatie.Id equals o.Id
@@ -139,8 +146,17 @@ namespace Beheer
                 listBoxDocent.Items.Add(doc);
             }
 
-
+            //tijden invullen in tijdregistratie tab
+            var tijdPerOpl = from t in TijdLijst
+                             join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                             where t.OpleidingsInformatie.Id == Opleiding.Id
+                             select t;
+            foreach (Tijdsregistraties item in tijdPerOpl)
+            {
+                listBoxTijd.Items.Add(item);
+            }
         }
+
         // alle listboxen en textboxen leegmaken voor creatie nieuwe opleiding
         private void ClearAll()
         {
@@ -464,6 +480,7 @@ namespace Beheer
             {
                 var delDeelnOpl = ctx.DeelnemersOpleidingen.SingleOrDefault(d => d.Deelnemer.Id == delPerId);
                 ctx.DeelnemersOpleidingen.Remove(delDeelnOpl);
+                ctx.Tijdsregistraties.RemoveRange(ctx.Tijdsregistraties.Where(d => d.Deelnemers.Id == delPerId));
                 ctx.SaveChanges();
             }
             ClearAll();
@@ -783,87 +800,54 @@ namespace Beheer
                 textBoxDocentBedrijf.Text = "";
             }
         }
+
+
+        //Tijdregistraties
+        private void ListBoxDeelnemersTijd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBoxTijd.Items.Clear();
+            if (listBoxDeelnemersTijd.SelectedIndex > 0)
+            {
+                Deelnemers deeln = listBoxDeelnemersTijd.SelectedItem as Deelnemers;
+                var tijdPerDeeln = from t in TijdLijst
+                                   join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                   where t.Deelnemers.Id == deeln.Id
+                                   select t;
+
+                foreach (Tijdsregistraties item in tijdPerDeeln)
+                {
+                    listBoxTijd.Items.Add(item);
+                }
+            }
+            else
+            {
+                var tijdPerOpl = from t in TijdLijst
+                                 join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                 where t.OpleidingsInformatie.Id == Opleiding.Id
+                                 select t;
+                foreach (Tijdsregistraties item in tijdPerOpl)
+                {
+                    listBoxTijd.Items.Add(item);
+                }
+            }
+        }
+
+        private void DateTimePickerTijdregistraties_ValueChanged(object sender, EventArgs e)
+        {
+            if (Opleiding != null)
+            {
+                listBoxTijd.Items.Clear();
+                var tijdPerOpl = from t in TijdLijst
+                                 join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                 where t.OpleidingsInformatie.Id == Opleiding.Id
+                                 where t.DateTime.Date == dateTimePickerTijdregistraties.Value.Date
+                                 select t;
+                foreach (Tijdsregistraties item in tijdPerOpl)
+                {
+                    listBoxTijd.Items.Add(item);
+                }
+            }
+        }
     }
 }
 
-
-
-
-
-
-//wat gebeurd wanneer tabbladen geselecteerd worden
-/*
-private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
-{
-    switch (tabControl1.SelectedIndex)
-    {
-        case 0:
-            OpleidingsInformatie opl = new OpleidingsInformatie();
-            OpleidingsInformatie oplCombo = comboBoxOpleiding.SelectedItem as OpleidingsInformatie;
-
-            if (comboBoxOpleiding.SelectedIndex != -1)
-            {
-                using (var ctx = new DataContext())
-                {
-                    opl = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == oplCombo.Id);
-                }
-                textBoxOplId.Text = opl.Id.ToString();
-                textBoxOplInstelling.Text = opl.OpleidingsInstelling;
-                textBoxOpl.Text = opl.Opleiding;
-                textBoxOplPlaats.Text = opl.Contactpersoon;
-                textBoxOplRef.Text = opl.ReferentieOpledingsPlaats;
-                textBoxOplOE.Text = opl.OeNummer.ToString();
-                textBoxOplCode.Text = opl.Opleidngscode.ToString();
-                dateTimePickerOplStart.Value = opl.StartDatum;
-                dateTimePickerOplEind.Value = opl.EindDatum;
-            }
-            break;
-        case 1:
-            List<Deelnemers> deelnLijst = new List<Deelnemers>();
-            using (var ctx = new DataContext())
-            {
-                deelnLijst = ctx.Deelnemers.ToList();               
-            }
-            foreach (Deelnemers item in deelnLijst)
-            {
-                listBoxDeelnemers.Items.Add(item);
-            }
-            break;
-        case 2:
-            List<NietOpleidingsDagen> verlofLijst = new List<NietOpleidingsDagen>();
-            using (var ctx = new DataContext())
-            {
-                verlofLijst = ctx.NietOpleidingsDagen.ToList();
-
-            }
-            foreach (NietOpleidingsDagen item in verlofLijst)
-            {
-                listBoxFeestdag.Items.Add(item);
-            }
-            break;
-        case 3:
-            List<Docenten> docentLijst = new List<Docenten>();
-            using (var ctx = new DataContext())
-            {
-                docentLijst = ctx.Docenten.ToList();
-            }
-            foreach (Docenten item in docentLijst)
-            {
-                listBoxDocent.Items.Add(item);
-            }
-            break;
-        case 4:
-            List<Deelnemers> tijdDeelnLijst = new List<Deelnemers>();
-            using (var ctx = new DataContext())
-            {
-                tijdDeelnLijst = ctx.Deelnemers.ToList();
-            }
-            foreach (Deelnemers item in tijdDeelnLijst)
-            {
-                listBoxDeelnemersTijd.Items.Add(item);
-            }
-            break;
-        default:
-            break;
-    }
-}*/
