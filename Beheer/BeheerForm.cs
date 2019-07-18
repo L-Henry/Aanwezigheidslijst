@@ -34,6 +34,9 @@ namespace Beheer
 
         private void BeheerForm_Load(object sender, EventArgs e)
         {
+            MinimumSize = Size;
+            MinimumSize = Size;
+
             using (var ctx = new DataContext())
             {
                 OplLijst = ctx.OpleidingsInformatie.ToList();
