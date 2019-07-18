@@ -94,18 +94,22 @@
             this.textBoxDocentNaam = new System.Windows.Forms.TextBox();
             this.textBoxDocentId = new System.Windows.Forms.TextBox();
             this.tabTijd = new System.Windows.Forms.TabPage();
+            this.dateTimePickerTijdregistraties = new System.Windows.Forms.DateTimePicker();
+            this.listBoxTijd = new System.Windows.Forms.ListBox();
             this.listBoxDeelnemersTijd = new System.Windows.Forms.ListBox();
-            this.labelTijdDeelnemerId = new System.Windows.Forms.Label();
-            this.labelTijdOpleidingId = new System.Windows.Forms.Label();
+            this.labelTijdVoormiddag = new System.Windows.Forms.Label();
+            this.labelTijdBadgeStatus = new System.Windows.Forms.Label();
             this.labelTijdDateTime = new System.Windows.Forms.Label();
-            this.labelTijdId = new System.Windows.Forms.Label();
-            this.textBoxTijdDeelnId = new System.Windows.Forms.TextBox();
-            this.textBoxTijdOplId = new System.Windows.Forms.TextBox();
+            this.labelTijdNaamDeeln = new System.Windows.Forms.Label();
+            this.textBoxTijdBadgeStatus = new System.Windows.Forms.TextBox();
             this.textBoxTijdStip = new System.Windows.Forms.TextBox();
-            this.textBoxTijdId = new System.Windows.Forms.TextBox();
+            this.textBoxTijdNaamDeeln = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxOpleiding = new System.Windows.Forms.ToolStripComboBox();
             this.errorProviderOplInfoTab = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxTijdVoorm = new System.Windows.Forms.CheckBox();
+            this.checkBoxTijdNam = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabOpl.SuspendLayout();
             this.tabDeelnemers.SuspendLayout();
@@ -750,15 +754,19 @@
             // 
             // tabTijd
             // 
+            this.tabTijd.Controls.Add(this.checkBoxTijdNam);
+            this.tabTijd.Controls.Add(this.checkBoxTijdVoorm);
+            this.tabTijd.Controls.Add(this.label1);
+            this.tabTijd.Controls.Add(this.dateTimePickerTijdregistraties);
+            this.tabTijd.Controls.Add(this.listBoxTijd);
             this.tabTijd.Controls.Add(this.listBoxDeelnemersTijd);
-            this.tabTijd.Controls.Add(this.labelTijdDeelnemerId);
-            this.tabTijd.Controls.Add(this.labelTijdOpleidingId);
+            this.tabTijd.Controls.Add(this.labelTijdVoormiddag);
+            this.tabTijd.Controls.Add(this.labelTijdBadgeStatus);
             this.tabTijd.Controls.Add(this.labelTijdDateTime);
-            this.tabTijd.Controls.Add(this.labelTijdId);
-            this.tabTijd.Controls.Add(this.textBoxTijdDeelnId);
-            this.tabTijd.Controls.Add(this.textBoxTijdOplId);
+            this.tabTijd.Controls.Add(this.labelTijdNaamDeeln);
+            this.tabTijd.Controls.Add(this.textBoxTijdBadgeStatus);
             this.tabTijd.Controls.Add(this.textBoxTijdStip);
-            this.tabTijd.Controls.Add(this.textBoxTijdId);
+            this.tabTijd.Controls.Add(this.textBoxTijdNaamDeeln);
             this.tabTijd.Location = new System.Drawing.Point(4, 29);
             this.tabTijd.Name = "tabTijd";
             this.tabTijd.Padding = new System.Windows.Forms.Padding(3);
@@ -766,6 +774,24 @@
             this.tabTijd.TabIndex = 4;
             this.tabTijd.Text = "Tijdsregistraties";
             this.tabTijd.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePickerTijdregistraties
+            // 
+            this.dateTimePickerTijdregistraties.Location = new System.Drawing.Point(210, 291);
+            this.dateTimePickerTijdregistraties.Name = "dateTimePickerTijdregistraties";
+            this.dateTimePickerTijdregistraties.Size = new System.Drawing.Size(205, 26);
+            this.dateTimePickerTijdregistraties.TabIndex = 63;
+            this.dateTimePickerTijdregistraties.Value = new System.DateTime(2019, 7, 18, 14, 10, 59, 0);
+            this.dateTimePickerTijdregistraties.ValueChanged += new System.EventHandler(this.DateTimePickerTijdregistraties_ValueChanged);
+            // 
+            // listBoxTijd
+            // 
+            this.listBoxTijd.FormattingEnabled = true;
+            this.listBoxTijd.ItemHeight = 20;
+            this.listBoxTijd.Location = new System.Drawing.Point(76, 323);
+            this.listBoxTijd.Name = "listBoxTijd";
+            this.listBoxTijd.Size = new System.Drawing.Size(479, 344);
+            this.listBoxTijd.TabIndex = 62;
             // 
             // listBoxDeelnemersTijd
             // 
@@ -775,24 +801,25 @@
             this.listBoxDeelnemersTijd.Name = "listBoxDeelnemersTijd";
             this.listBoxDeelnemersTijd.Size = new System.Drawing.Size(358, 624);
             this.listBoxDeelnemersTijd.TabIndex = 61;
+            this.listBoxDeelnemersTijd.SelectedIndexChanged += new System.EventHandler(this.ListBoxDeelnemersTijd_SelectedIndexChanged);
             // 
-            // labelTijdDeelnemerId
+            // labelTijdVoormiddag
             // 
-            this.labelTijdDeelnemerId.AutoSize = true;
-            this.labelTijdDeelnemerId.Location = new System.Drawing.Point(31, 168);
-            this.labelTijdDeelnemerId.Name = "labelTijdDeelnemerId";
-            this.labelTijdDeelnemerId.Size = new System.Drawing.Size(105, 20);
-            this.labelTijdDeelnemerId.TabIndex = 55;
-            this.labelTijdDeelnemerId.Text = "Deelnemer Id";
+            this.labelTijdVoormiddag.AutoSize = true;
+            this.labelTijdVoormiddag.Location = new System.Drawing.Point(31, 168);
+            this.labelTijdVoormiddag.Name = "labelTijdVoormiddag";
+            this.labelTijdVoormiddag.Size = new System.Drawing.Size(95, 20);
+            this.labelTijdVoormiddag.TabIndex = 55;
+            this.labelTijdVoormiddag.Text = "Voormiddag";
             // 
-            // labelTijdOpleidingId
+            // labelTijdBadgeStatus
             // 
-            this.labelTijdOpleidingId.AutoSize = true;
-            this.labelTijdOpleidingId.Location = new System.Drawing.Point(31, 134);
-            this.labelTijdOpleidingId.Name = "labelTijdOpleidingId";
-            this.labelTijdOpleidingId.Size = new System.Drawing.Size(93, 20);
-            this.labelTijdOpleidingId.TabIndex = 54;
-            this.labelTijdOpleidingId.Text = "Opleiding Id";
+            this.labelTijdBadgeStatus.AutoSize = true;
+            this.labelTijdBadgeStatus.Location = new System.Drawing.Point(31, 134);
+            this.labelTijdBadgeStatus.Name = "labelTijdBadgeStatus";
+            this.labelTijdBadgeStatus.Size = new System.Drawing.Size(104, 20);
+            this.labelTijdBadgeStatus.TabIndex = 54;
+            this.labelTijdBadgeStatus.Text = "Badge status";
             // 
             // labelTijdDateTime
             // 
@@ -803,28 +830,22 @@
             this.labelTijdDateTime.TabIndex = 53;
             this.labelTijdDateTime.Text = "Tijdstip";
             // 
-            // labelTijdId
+            // labelTijdNaamDeeln
             // 
-            this.labelTijdId.AutoSize = true;
-            this.labelTijdId.Location = new System.Drawing.Point(31, 64);
-            this.labelTijdId.Name = "labelTijdId";
-            this.labelTijdId.Size = new System.Drawing.Size(154, 20);
-            this.labelTijdId.TabIndex = 52;
-            this.labelTijdId.Text = "Id van tijdsregistratie";
+            this.labelTijdNaamDeeln.AutoSize = true;
+            this.labelTijdNaamDeeln.Location = new System.Drawing.Point(31, 64);
+            this.labelTijdNaamDeeln.Name = "labelTijdNaamDeeln";
+            this.labelTijdNaamDeeln.Size = new System.Drawing.Size(130, 20);
+            this.labelTijdNaamDeeln.TabIndex = 52;
+            this.labelTijdNaamDeeln.Text = "Naam deelnemer";
             // 
-            // textBoxTijdDeelnId
+            // textBoxTijdBadgeStatus
             // 
-            this.textBoxTijdDeelnId.Location = new System.Drawing.Point(275, 162);
-            this.textBoxTijdDeelnId.Name = "textBoxTijdDeelnId";
-            this.textBoxTijdDeelnId.Size = new System.Drawing.Size(221, 26);
-            this.textBoxTijdDeelnId.TabIndex = 45;
-            // 
-            // textBoxTijdOplId
-            // 
-            this.textBoxTijdOplId.Location = new System.Drawing.Point(275, 128);
-            this.textBoxTijdOplId.Name = "textBoxTijdOplId";
-            this.textBoxTijdOplId.Size = new System.Drawing.Size(221, 26);
-            this.textBoxTijdOplId.TabIndex = 44;
+            this.textBoxTijdBadgeStatus.Location = new System.Drawing.Point(275, 128);
+            this.textBoxTijdBadgeStatus.Name = "textBoxTijdBadgeStatus";
+            this.textBoxTijdBadgeStatus.ReadOnly = true;
+            this.textBoxTijdBadgeStatus.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdBadgeStatus.TabIndex = 44;
             // 
             // textBoxTijdStip
             // 
@@ -834,12 +855,13 @@
             this.textBoxTijdStip.Size = new System.Drawing.Size(221, 26);
             this.textBoxTijdStip.TabIndex = 43;
             // 
-            // textBoxTijdId
+            // textBoxTijdNaamDeeln
             // 
-            this.textBoxTijdId.Location = new System.Drawing.Point(275, 58);
-            this.textBoxTijdId.Name = "textBoxTijdId";
-            this.textBoxTijdId.Size = new System.Drawing.Size(221, 26);
-            this.textBoxTijdId.TabIndex = 42;
+            this.textBoxTijdNaamDeeln.Location = new System.Drawing.Point(275, 58);
+            this.textBoxTijdNaamDeeln.Name = "textBoxTijdNaamDeeln";
+            this.textBoxTijdNaamDeeln.ReadOnly = true;
+            this.textBoxTijdNaamDeeln.Size = new System.Drawing.Size(221, 26);
+            this.textBoxTijdNaamDeeln.TabIndex = 42;
             // 
             // toolStrip1
             // 
@@ -863,6 +885,33 @@
             // errorProviderOplInfoTab
             // 
             this.errorProviderOplInfoTab.ContainerControl = this;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 202);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 65;
+            this.label1.Text = "Namiddag";
+            // 
+            // checkBoxTijdVoorm
+            // 
+            this.checkBoxTijdVoorm.AutoSize = true;
+            this.checkBoxTijdVoorm.Location = new System.Drawing.Point(275, 164);
+            this.checkBoxTijdVoorm.Name = "checkBoxTijdVoorm";
+            this.checkBoxTijdVoorm.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxTijdVoorm.TabIndex = 66;
+            this.checkBoxTijdVoorm.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxTijdNam
+            // 
+            this.checkBoxTijdNam.AutoSize = true;
+            this.checkBoxTijdNam.Location = new System.Drawing.Point(275, 202);
+            this.checkBoxTijdNam.Name = "checkBoxTijdNam";
+            this.checkBoxTijdNam.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxTijdNam.TabIndex = 67;
+            this.checkBoxTijdNam.UseVisualStyleBackColor = true;
             // 
             // BeheerForm
             // 
@@ -941,14 +990,13 @@
         private System.Windows.Forms.TextBox textBoxDocentBedrijf;
         private System.Windows.Forms.TextBox textBoxDocentNaam;
         private System.Windows.Forms.TextBox textBoxDocentId;
-        private System.Windows.Forms.Label labelTijdDeelnemerId;
-        private System.Windows.Forms.Label labelTijdOpleidingId;
+        private System.Windows.Forms.Label labelTijdVoormiddag;
+        private System.Windows.Forms.Label labelTijdBadgeStatus;
         private System.Windows.Forms.Label labelTijdDateTime;
-        private System.Windows.Forms.Label labelTijdId;
-        private System.Windows.Forms.TextBox textBoxTijdDeelnId;
-        private System.Windows.Forms.TextBox textBoxTijdOplId;
+        private System.Windows.Forms.Label labelTijdNaamDeeln;
+        private System.Windows.Forms.TextBox textBoxTijdBadgeStatus;
         private System.Windows.Forms.TextBox textBoxTijdStip;
-        private System.Windows.Forms.TextBox textBoxTijdId;
+        private System.Windows.Forms.TextBox textBoxTijdNaamDeeln;
         private System.Windows.Forms.Button buttonOplDel;
         private System.Windows.Forms.Button buttonOplUpd;
         private System.Windows.Forms.Button buttonOplCreate;
@@ -972,6 +1020,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerVerlof;
         private System.Windows.Forms.CheckBox checkBoxVerlofNamiddag;
         private System.Windows.Forms.CheckBox checkBoxVerlofVoormiddag;
+        private System.Windows.Forms.ListBox listBoxTijd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTijdregistraties;
+        private System.Windows.Forms.CheckBox checkBoxTijdNam;
+        private System.Windows.Forms.CheckBox checkBoxTijdVoorm;
+        private System.Windows.Forms.Label label1;
     }
 }
 

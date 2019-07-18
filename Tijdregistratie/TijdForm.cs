@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Data;
+using System.Data.Entity;
 
 namespace Tijdregistratie
 {
@@ -100,7 +101,6 @@ namespace Tijdregistratie
                 dynamicButton.Height = 90;
                 dynamicButton.Width = 110;
                 dynamicButton.Location = new Point(22 + tellerX * 140, 225 + tellerY * 150);
-                dynamicButton.Text = "Badge";
                 dynamicButton.Name = item.Naam;
 
                 tellerX++;
@@ -110,8 +110,20 @@ namespace Tijdregistratie
                     tellerY++;
                 }
 
-                dynamicButton.Click += DynamicButton_Click;
+                var tijdPerDeeln = from t in TijdLijst
+                                   join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                   where t.Deelnemers.Id == item.Id
+                                   select t;
+                if (tijdPerDeeln.Count() % 2 == 0)
+                {
+                    dynamicButton.Text = "Badge In";
+                }
+                else
+                {
+                    dynamicButton.Text = "Badge Out";
+                }
 
+                dynamicButton.Click += DynamicButton_Click;
                 Controls.Add(label);
                 Controls.Add(dynamicButton);
             }
@@ -140,24 +152,31 @@ namespace Tijdregistratie
                         where dOpl.OpleidingsInformatie.Id == Opleiding.Id
                         select d;
 
+            Deelnemers deel = new Deelnemers();
             using (var ctx = new DataContext())
             {
                 Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
-                Deelnemers deel = deeln.SingleOrDefault(d => d.Naam == button.Name);
-                Tijdsregistraties nieuweTijdReg = new Tijdsregistraties
-                {
-                    DateTime = DateTime.Now,
-                    OpleidingsInformatie = Opleiding,
-                    Deelnemers = deel
-                };
+                deel = ctx.Deelnemers.SingleOrDefault(d => d.Naam == button.Name);
+                ctx.Tijdsregistraties.Add(new Tijdsregistraties{ DateTime = DateTime.Now, OpleidingsInformatie = Opleiding, Deelnemers = deel});
+                ctx.SaveChanges();
+                TijdLijst = ctx.Tijdsregistraties.Include(x=>x.Deelnemers).Include(x=>x.OpleidingsInformatie).ToList();
             }
 
-            //button.Text
-
-
+            if (button.Text == "Badge In")
+            {
+                button.Text = "Badge Out";
+            }
+            else
+            {
+                button.Text = "Badge In";
+                var tijdPerDeel = from t in TijdLijst
+                                  join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                  where t.Deelnemers.Id == deel.Id
+                                  select t;
+                //List<Tijdsregistraties> tijdPerDeeln = tijdPerDeel as List<Tijdsregistraties>;
+                TimeSpan tijdIn = tijdPerDeel.Last().DateTime - tijdPerDeel.Reverse().Skip(1).First().DateTime;
+                MessageBox.Show($"{deel.Naam} was {tijdIn} aanwezig.");
+            }
         }
-
-
     }
-
 }

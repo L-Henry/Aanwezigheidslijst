@@ -13,6 +13,10 @@ namespace Data
         public OpleidingsInformatie OpleidingsInformatie { get; set; }
         public Deelnemers Deelnemers { get; set; }
 
+        public override string ToString()
+        {
+            return DateTime.ToShortDateString() + "  " + DateTime.ToLongTimeString();
+        }
 
     }
 }
