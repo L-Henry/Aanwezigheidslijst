@@ -94,6 +94,9 @@
             this.textBoxDocentNaam = new System.Windows.Forms.TextBox();
             this.textBoxDocentId = new System.Windows.Forms.TextBox();
             this.tabTijd = new System.Windows.Forms.TabPage();
+            this.checkBoxTijdNam = new System.Windows.Forms.CheckBox();
+            this.checkBoxTijdVoorm = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerTijdregistraties = new System.Windows.Forms.DateTimePicker();
             this.listBoxTijd = new System.Windows.Forms.ListBox();
             this.listBoxDeelnemersTijd = new System.Windows.Forms.ListBox();
@@ -107,9 +110,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxOpleiding = new System.Windows.Forms.ToolStripComboBox();
             this.errorProviderOplInfoTab = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxTijdVoorm = new System.Windows.Forms.CheckBox();
-            this.checkBoxTijdNam = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabOpl.SuspendLayout();
             this.tabDeelnemers.SuspendLayout();
@@ -775,6 +775,33 @@
             this.tabTijd.Text = "Tijdsregistraties";
             this.tabTijd.UseVisualStyleBackColor = true;
             // 
+            // checkBoxTijdNam
+            // 
+            this.checkBoxTijdNam.AutoSize = true;
+            this.checkBoxTijdNam.Location = new System.Drawing.Point(275, 170);
+            this.checkBoxTijdNam.Name = "checkBoxTijdNam";
+            this.checkBoxTijdNam.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxTijdNam.TabIndex = 67;
+            this.checkBoxTijdNam.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxTijdVoorm
+            // 
+            this.checkBoxTijdVoorm.AutoSize = true;
+            this.checkBoxTijdVoorm.Location = new System.Drawing.Point(275, 135);
+            this.checkBoxTijdVoorm.Name = "checkBoxTijdVoorm";
+            this.checkBoxTijdVoorm.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxTijdVoorm.TabIndex = 66;
+            this.checkBoxTijdVoorm.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 65;
+            this.label1.Text = "Namiddag";
+            // 
             // dateTimePickerTijdregistraties
             // 
             this.dateTimePickerTijdregistraties.Location = new System.Drawing.Point(210, 291);
@@ -792,6 +819,7 @@
             this.listBoxTijd.Name = "listBoxTijd";
             this.listBoxTijd.Size = new System.Drawing.Size(479, 344);
             this.listBoxTijd.TabIndex = 62;
+            this.listBoxTijd.SelectedIndexChanged += new System.EventHandler(this.ListBoxTijd_SelectedIndexChanged);
             // 
             // listBoxDeelnemersTijd
             // 
@@ -806,7 +834,7 @@
             // labelTijdVoormiddag
             // 
             this.labelTijdVoormiddag.AutoSize = true;
-            this.labelTijdVoormiddag.Location = new System.Drawing.Point(31, 168);
+            this.labelTijdVoormiddag.Location = new System.Drawing.Point(31, 138);
             this.labelTijdVoormiddag.Name = "labelTijdVoormiddag";
             this.labelTijdVoormiddag.Size = new System.Drawing.Size(95, 20);
             this.labelTijdVoormiddag.TabIndex = 55;
@@ -815,7 +843,7 @@
             // labelTijdBadgeStatus
             // 
             this.labelTijdBadgeStatus.AutoSize = true;
-            this.labelTijdBadgeStatus.Location = new System.Drawing.Point(31, 134);
+            this.labelTijdBadgeStatus.Location = new System.Drawing.Point(31, 99);
             this.labelTijdBadgeStatus.Name = "labelTijdBadgeStatus";
             this.labelTijdBadgeStatus.Size = new System.Drawing.Size(104, 20);
             this.labelTijdBadgeStatus.TabIndex = 54;
@@ -824,11 +852,11 @@
             // labelTijdDateTime
             // 
             this.labelTijdDateTime.AutoSize = true;
-            this.labelTijdDateTime.Location = new System.Drawing.Point(31, 100);
+            this.labelTijdDateTime.Location = new System.Drawing.Point(31, 204);
             this.labelTijdDateTime.Name = "labelTijdDateTime";
-            this.labelTijdDateTime.Size = new System.Drawing.Size(58, 20);
+            this.labelTijdDateTime.Size = new System.Drawing.Size(104, 20);
             this.labelTijdDateTime.TabIndex = 53;
-            this.labelTijdDateTime.Text = "Tijdstip";
+            this.labelTijdDateTime.Text = "Tijd aanwezig";
             // 
             // labelTijdNaamDeeln
             // 
@@ -841,7 +869,7 @@
             // 
             // textBoxTijdBadgeStatus
             // 
-            this.textBoxTijdBadgeStatus.Location = new System.Drawing.Point(275, 128);
+            this.textBoxTijdBadgeStatus.Location = new System.Drawing.Point(275, 93);
             this.textBoxTijdBadgeStatus.Name = "textBoxTijdBadgeStatus";
             this.textBoxTijdBadgeStatus.ReadOnly = true;
             this.textBoxTijdBadgeStatus.Size = new System.Drawing.Size(221, 26);
@@ -849,7 +877,7 @@
             // 
             // textBoxTijdStip
             // 
-            this.textBoxTijdStip.Location = new System.Drawing.Point(275, 94);
+            this.textBoxTijdStip.Location = new System.Drawing.Point(275, 203);
             this.textBoxTijdStip.Name = "textBoxTijdStip";
             this.textBoxTijdStip.ReadOnly = true;
             this.textBoxTijdStip.Size = new System.Drawing.Size(221, 26);
@@ -885,33 +913,6 @@
             // errorProviderOplInfoTab
             // 
             this.errorProviderOplInfoTab.ContainerControl = this;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 202);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 20);
-            this.label1.TabIndex = 65;
-            this.label1.Text = "Namiddag";
-            // 
-            // checkBoxTijdVoorm
-            // 
-            this.checkBoxTijdVoorm.AutoSize = true;
-            this.checkBoxTijdVoorm.Location = new System.Drawing.Point(275, 164);
-            this.checkBoxTijdVoorm.Name = "checkBoxTijdVoorm";
-            this.checkBoxTijdVoorm.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxTijdVoorm.TabIndex = 66;
-            this.checkBoxTijdVoorm.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxTijdNam
-            // 
-            this.checkBoxTijdNam.AutoSize = true;
-            this.checkBoxTijdNam.Location = new System.Drawing.Point(275, 202);
-            this.checkBoxTijdNam.Name = "checkBoxTijdNam";
-            this.checkBoxTijdNam.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxTijdNam.TabIndex = 67;
-            this.checkBoxTijdNam.UseVisualStyleBackColor = true;
             // 
             // BeheerForm
             // 
