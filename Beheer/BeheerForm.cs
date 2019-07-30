@@ -414,7 +414,8 @@ namespace Beheer
                         ctx.SaveChanges();
 
                         DeelnLijst = ctx.Deelnemers.ToList();
-                        DeelnOplLijst = ctx.DeelnemersOpleidingen.ToList();
+                        DeelnOplLijst = ctx.DeelnemersOpleidingen.Include(x => x.Deelnemer).Include(x => x.OpleidingsInformatie).ToList();
+
                     }
                 }
                 else
@@ -434,7 +435,7 @@ namespace Beheer
                         ctx.SaveChanges();
 
                         DeelnLijst = ctx.Deelnemers.ToList();
-                        DeelnOplLijst = ctx.DeelnemersOpleidingen.ToList();
+                        DeelnOplLijst = ctx.DeelnemersOpleidingen.Include(x=>x.Deelnemer).Include(x=>x.OpleidingsInformatie).ToList();
                     }
                     textBoxDeelnId.Text = DeelnLijst.Last().Id.ToString();
                 }
@@ -489,8 +490,8 @@ namespace Beheer
                 ctx.Tijdsregistraties.RemoveRange(ctx.Tijdsregistraties.Where(d => d.Deelnemers.Id == delPerId));
                 ctx.SaveChanges();
 
-                TijdLijst = ctx.Tijdsregistraties.ToList();
-                DeelnOplLijst = ctx.DeelnemersOpleidingen.ToList();
+                TijdLijst = ctx.Tijdsregistraties.Include(x=>x.Deelnemers).Include(x=>x.OpleidingsInformatie).ToList();
+                DeelnOplLijst = ctx.DeelnemersOpleidingen.Include(x => x.Deelnemer).Include(x => x.OpleidingsInformatie).ToList();
             }
             ClearAll();
             LaadAlleListbox();
@@ -585,7 +586,7 @@ namespace Beheer
                     ctx.NietOpleidingsDagen.Add(nieuweVerlofDag);
                     ctx.SaveChanges();
 
-                    VerlofLijst = ctx.NietOpleidingsDagen.ToList();
+                    VerlofLijst = ctx.NietOpleidingsDagen.Include(x=>x.OpleidingsInformatie).ToList();
                 }
                 textBoxVerlofId.Text = VerlofLijst.Last().Id.ToString();
 
@@ -622,7 +623,7 @@ namespace Beheer
                         updDag.Namiddag = checkBoxVerlofNamiddag.Checked;
                         ctx.SaveChanges();
 
-                        VerlofLijst = ctx.NietOpleidingsDagen.ToList();
+                        VerlofLijst = ctx.NietOpleidingsDagen.Include(x=>x.OpleidingsInformatie).ToList();
                     }
                 }
                 ClearAll();
@@ -644,7 +645,7 @@ namespace Beheer
                 ctx.NietOpleidingsDagen.Remove(delVerlof);
                 ctx.SaveChanges();
 
-                VerlofLijst = ctx.NietOpleidingsDagen.ToList();
+                VerlofLijst = ctx.NietOpleidingsDagen.Include(x => x.OpleidingsInformatie).ToList();
             }
             ClearAll();
             LaadAlleListbox();
@@ -725,7 +726,7 @@ namespace Beheer
                         ctx.DocentenOpleiding.Add(new DocentenOpleiding { Docenten = docentUpd, OpleidingsInformatie = Opleiding });
                         ctx.SaveChanges();
 
-                        DocOplLijst = ctx.DocentenOpleiding.ToList();
+                        DocOplLijst = ctx.DocentenOpleiding.Include(x=>x.Docenten).Include(x=>x.OpleidingsInformatie).ToList();
                     }
                 }
                 else
@@ -742,6 +743,7 @@ namespace Beheer
                         ctx.DocentenOpleiding.Add(new DocentenOpleiding { Docenten = nieuweDoc, OpleidingsInformatie = Opleiding });
                         ctx.SaveChanges();
 
+                        DocOplLijst = ctx.DocentenOpleiding.Include(x => x.Docenten).Include(x => x.OpleidingsInformatie).ToList();
                         DocentLijst = ctx.Docenten.ToList();
                     }
                     textBoxDocentId.Text = DocentLijst.Last().Id.ToString();
@@ -795,7 +797,7 @@ namespace Beheer
                 ctx.SaveChanges();
 
                 //DocentLijst = ctx.Docenten.ToList();
-                DocOplLijst = ctx.DocentenOpleiding.ToList();
+                DocOplLijst = ctx.DocentenOpleiding.Include(x => x.Docenten).Include(x => x.OpleidingsInformatie).ToList();
             }
             ClearAll();
             LaadAlleListbox();
@@ -859,14 +861,30 @@ namespace Beheer
             if (Opleiding != null)
             {
                 listBoxTijd.Items.Clear();
-                var tijdPerOpl = from t in TijdLijst
-                                 join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
-                                 where t.OpleidingsInformatie.Id == Opleiding.Id
-                                 where t.DateTime.Date == dateTimePickerTijdregistraties.Value.Date
-                                 select t;
-                foreach (Tijdsregistraties item in tijdPerOpl)
+                if (listBoxDeelnemersTijd.SelectedIndex < 1)
                 {
-                    listBoxTijd.Items.Add(item);
+                    var tijdPerOpl = from t in TijdLijst
+                                     join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                     where t.OpleidingsInformatie.Id == Opleiding.Id
+                                     where t.DateTime.Date == dateTimePickerTijdregistraties.Value.Date
+                                     select t;
+                    foreach (Tijdsregistraties item in tijdPerOpl)
+                    {
+                        listBoxTijd.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    Deelnemers deeln = listBoxDeelnemersTijd.SelectedItem as Deelnemers;
+                    var tijdPerDeeln = from t in TijdLijst
+                                       join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
+                                       where t.Deelnemers.Id == deeln.Id
+                                       where t.DateTime.Date == dateTimePickerTijdregistraties.Value.Date
+                                       select t;
+                    foreach (Tijdsregistraties item in tijdPerDeeln)
+                    {
+                        listBoxTijd.Items.Add(item);
+                    }
                 }
             }
         }
@@ -904,12 +922,12 @@ namespace Beheer
                         checkBoxTijdVoorm.Checked = true;
                         checkBoxTijdNam.Checked = true;
                     }
-                    else if (tijdAanwezig > new TimeSpan(3,0,0) && tijdPerDeeln.ElementAt(tijdIndex).DateTime.Hour < 13) 
+                    else if (tijdAanwezig > new TimeSpan(3,0,0) && tijdPerDeeln.ElementAt(tijdIndex).DateTime.Hour < 14) 
                     {
                         checkBoxTijdVoorm.Checked = true;
                         checkBoxTijdNam.Checked = false;
                     }
-                    else if (tijdAanwezig > new TimeSpan(3, 0, 0) && tijdPerDeeln.ElementAt(tijdIndex).DateTime.Hour < 17)
+                    else if (tijdAanwezig > new TimeSpan(3, 0, 0) && tijdPerDeeln.ElementAt(tijdIndex).DateTime.Hour > 14)
                     {
                         checkBoxTijdVoorm.Checked = false;
                         checkBoxTijdNam.Checked = true;
