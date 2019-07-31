@@ -159,6 +159,7 @@ namespace Tijdregistratie
                 deel = ctx.Deelnemers.SingleOrDefault(d => d.Naam == button.Name);
                 ctx.Tijdsregistraties.Add(new Tijdsregistraties{ DateTime = DateTime.Now, OpleidingsInformatie = Opleiding, Deelnemers = deel});
                 ctx.SaveChanges();
+
                 TijdLijst = ctx.Tijdsregistraties.Include(x=>x.Deelnemers).Include(x=>x.OpleidingsInformatie).ToList();
             }
 
