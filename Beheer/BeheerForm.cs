@@ -69,7 +69,6 @@ namespace Beheer
             {
                 ClearAll();
                 tabControl1.SelectedIndex = 0;
-                //LaadAlleListbox(); //mag niet denk ik
             }
             else
             {
@@ -327,8 +326,26 @@ namespace Beheer
         //verwijder opleiding
         private void ButtonOplDel_Click(object sender, EventArgs e)
         {
-            
-            //Nog toe te voegen
+            int delOpldId = int.Parse(textBoxOplId.Text);
+            using (var ctx = new DataContext())
+            {
+                Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == delOpldId);
+                ctx.NietOpleidingsDagen.RemoveRange(ctx.NietOpleidingsDagen.Where(x => x.OpleidingsInformatie.Id == delOpldId));
+                ctx.DeelnemersOpleidingen.RemoveRange(ctx.DeelnemersOpleidingen.Where(x => x.OpleidingsInformatie.Id == delOpldId));
+                ctx.DocentenOpleiding.RemoveRange(ctx.DocentenOpleiding.Where(x => x.OpleidingsInformatie.Id == delOpldId));
+                ctx.Tijdsregistraties.RemoveRange(ctx.Tijdsregistraties.Where(x => x.OpleidingsInformatie.Id == delOpldId));
+                ctx.OpleidingsInformatie.Remove(Opleiding);
+                ctx.SaveChanges();
+
+                OplLijst = ctx.OpleidingsInformatie.OrderBy(x => x.Opleiding).ToList();
+            }
+            comboBoxOpleiding.Items.Clear();
+            comboBoxOpleiding.Items.Add("Nieuwe opleiding aanmaken");
+            foreach (var opl in OplLijst)
+            {
+                comboBoxOpleiding.Items.Add(opl);
+            }
+            comboBoxOpleiding.SelectedIndex = 0;
         }
 
 
