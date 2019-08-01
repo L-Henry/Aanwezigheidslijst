@@ -174,7 +174,6 @@ namespace Tijdregistratie
                                   join opl in OplLijst on t.OpleidingsInformatie.Id equals opl.Id
                                   where t.Deelnemers.Id == deel.Id
                                   select t;
-                //List<Tijdsregistraties> tijdPerDeeln = tijdPerDeel as List<Tijdsregistraties>;
                 TimeSpan tijdIn = tijdPerDeel.Last().DateTime - tijdPerDeel.Reverse().Skip(1).First().DateTime;
                 MessageBox.Show($"{deel.Naam} was {tijdIn} aanwezig.");
             }

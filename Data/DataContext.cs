@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.CodeFirst;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -18,9 +19,20 @@ namespace Data
         public DbSet<OpleidingsInformatie> OpleidingsInformatie { get; set; }
         public DbSet<Tijdsregistraties> Tijdsregistraties { get; set; }
 
-        public DataContext() : base("Aanwezigheidslijst")
+        public DataContext() : base("AanwConnectionString")
         {
 
         }
+        //AanwConnectionString
+
+
+        ////voor sqlite
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<DataContext>(modelBuilder);
+        //    Database.SetInitializer(sqliteConnectionInitializer);
+        //}
+
+
     }
 }

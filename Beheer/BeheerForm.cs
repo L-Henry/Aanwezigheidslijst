@@ -263,6 +263,8 @@ namespace Beheer
 
             if (IsValidOpl && textBoxOplId.Text == "")// && ( comboBoxOpleiding.SelectedIndex == 0 || comboBoxOpleiding.SelectedIndex == -1)) //mogelijk nodig
             {
+                errorProviderOplInfoTab.SetError(buttonOplCreate, string.Empty);
+
                 OpleidingsInformatie nieuweOpl = new OpleidingsInformatie
                 {
                     OpleidingsInstelling = textBoxOplInstelling.Text,
@@ -299,6 +301,7 @@ namespace Beheer
 
             if (IsValidOpl && textBoxOplId.Text != "")
             {
+                errorProviderOplInfoTab.SetError(buttonOplUpd, string.Empty);
                 using (var ctx = new DataContext())
                 {
                     OpleidingsInformatie oplUpd = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
@@ -419,6 +422,8 @@ namespace Beheer
             }
             else if (IsValidDeeln && textBoxDeelnId.Text == "")
             {
+                errorProviderOplInfoTab.SetError(buttonDeelnemerCreate, string.Empty);
+
                 if (DeelnLijst.Any(d => d.Naam.ToLower() == textBoxDeelnNaam.Text.ToLower() && d.GeboorteDatum.Date == dateTimePickerDeelnGeb.Value.Date))
                 {
                     using (var ctx = new DataContext())
@@ -437,6 +442,8 @@ namespace Beheer
                 }
                 else
                 {
+                    errorProviderOplInfoTab.SetError(buttonDeelnemerCreate, string.Empty);
+
                     Deelnemers nieuweDeeln = new Deelnemers
                     {
                         Naam = textBoxDeelnNaam.Text,
@@ -475,6 +482,8 @@ namespace Beheer
             }
             else if (IsValidDeeln && textBoxDeelnId.Text != "")
             {
+                errorProviderOplInfoTab.SetError(buttonDeelnemerUpd, string.Empty);
+
                 int deelnId = int.Parse(textBoxDeelnId.Text);
                 using (var ctx = new DataContext())
                 {
@@ -590,6 +599,8 @@ namespace Beheer
             }
             else if (IsValidVerlof && textBoxVerlofId.Text == "")
             {
+                errorProviderOplInfoTab.SetError(buttonVerlofAdd, string.Empty);
+
                 using (var ctx = new DataContext())
                 {
                     Opleiding = ctx.OpleidingsInformatie.SingleOrDefault(x => x.Id == Opleiding.Id);
@@ -626,6 +637,8 @@ namespace Beheer
             }
             else if (IsValidVerlof && textBoxVerlofId.Text != "")
             {
+                errorProviderOplInfoTab.SetError(buttonVerlofUpd, string.Empty);
+
                 int dagId = int.Parse(textBoxVerlofId.Text);
                 using (var ctx = new DataContext())
                 {
@@ -733,6 +746,8 @@ namespace Beheer
             }
             else if (IsValidDocent && textBoxDocentId.Text == "")
             {
+                errorProviderOplInfoTab.SetError(buttonDocentAdd, string.Empty);
+
                 if (DocentLijst.Any(d => d.Naam.ToLower() == textBoxDocentNaam.Text.ToLower() && d.Bedrijf.ToLower() == textBoxDocentBedrijf.Text.ToLower()))
                 {
                     using (var ctx = new DataContext())
@@ -781,10 +796,12 @@ namespace Beheer
 
             if (comboBoxOpleiding.SelectedIndex <= 1)
             {
-                errorProviderOplInfoTab.SetError(buttonDocentUpd, "Selecteer of creeër eerst een opleiding om deelnemer aan toe tevoegen.");
+                errorProviderOplInfoTab.SetError(buttonDocentUpd, "Selecteer of creeër eerst een opleiding om docent aan toe tevoegen.");
             }
             else if (IsValidDocent && textBoxDocentId.Text != "")
             {
+                errorProviderOplInfoTab.SetError(buttonDocentUpd, string.Empty);
+
                 int docId = int.Parse(textBoxDocentId.Text);
                 using (var ctx = new DataContext())
                 {
@@ -800,7 +817,7 @@ namespace Beheer
             }
             else
             {
-                errorProviderOplInfoTab.SetError(buttonDocentUpd, "U probeert een nieuwe deelnemer toe te voegen..");
+                errorProviderOplInfoTab.SetError(buttonDocentUpd, "U probeert een nieuwe docent toe te voegen.");
             }
         }
 
